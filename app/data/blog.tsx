@@ -83,5 +83,8 @@ export const blogsDatas:Record<string,PageType> = {
     // 3D engine 23
     // Halay
     // Infinite creation
-    
+    // Chess
+    // RAT1
+    // Contra Burreau
+    // Message App
 }
