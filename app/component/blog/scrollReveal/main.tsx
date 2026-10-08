@@ -4,11 +4,6 @@ import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import style from "./reveal.module.scss";
 
-/**
- * Même mécanique que `SliderPart` (about / portfolio) : observe les éléments
- * marqués `data-scroll-reveal`, pose un décalage en cascade par groupe de
- * frères, puis révèle à l'entrée dans le viewport. Utilisé hors du slider.
- */
 export function ScrollReveal({ children }: { children: ReactNode }) {
     const rootRef = useRef<HTMLDivElement>(null);
 

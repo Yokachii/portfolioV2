@@ -24,7 +24,7 @@ const navItems: PortfolioNavItem[] = [
             <rect x="3.5" y="13.5" width="7" height="6" rx="1.5" />
         </svg>
     ) },
-    { id: "portfolio", label: "Portfolio", href: "/portfolio", icon: (
+    { id: "portfolio", label: "Portfolio", href: "/", icon: (
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h11A2.5 2.5 0 0 1 20 8.5v7A2.5 2.5 0 0 1 17.5 18h-11A2.5 2.5 0 0 1 4 15.5v-7Z" />
             <path d="M8 6V4.5A1.5 1.5 0 0 1 9.5 3h5A1.5 1.5 0 0 1 16 4.5V6" />
@@ -47,14 +47,6 @@ const NAV_LOAD_DELAY: Record<string, string> = {
     default: "2200ms",
 };
 
-/**
- * Id de l'icône correspondant à la route courante, ou `null` si aucune
- * icône ne correspond (toutes restent alors sombres).
- *
- * `home` (`/portfolio#home`) et `portfolio` (`/portfolio`) pointent vers la
- * même route : on privilégie le libellé le plus spécifique (celui dont le
- * href ne porte pas d'ancre) pour éviter que `home` ne l'emporte au hasard.
- */
 function resolveActiveNavId(pathname: string): string | null {
     const normalized = pathname.replace(/\/+$/, "") || "/";
 

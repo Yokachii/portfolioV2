@@ -13,10 +13,6 @@ type PortfolioNavProps = {
     currentPage?: string;
     isVisible?: boolean;
     className?: string;
-    /**
-     * Intercept a cross-page link so the shell can fade the page out
-     * before navigating. Return true if the click was handled.
-     */
     onNavigate?: (href: string, event: MouseEvent<HTMLAnchorElement>) => boolean;
 };
 
