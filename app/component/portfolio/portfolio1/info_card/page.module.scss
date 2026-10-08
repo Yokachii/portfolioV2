@@ -1,0 +1,141 @@
+.card {
+	--card-ink: #17231f;
+	--card-muted: #68736e;
+	--card-accent: #d4ff58;
+
+	display: flex;
+	flex-direction: column;
+	width: 344px;
+	max-height: 640px;
+	overflow: hidden;
+	color: var(--card-ink);
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 22px 58px rgba(4, 18, 14, 0.16);
+	font-family: var(--font-geist-sans), "Avenir Next", sans-serif;
+
+	.imageFrame {
+		position: relative;
+		height: 284px;
+		width: 240px;
+		margin: 26px auto 0;
+		margin-top: 40px !important;
+		overflow: hidden;
+		background: #414a45;
+		border-radius: 8px;
+		flex: 0 0 auto;
+
+		.portrait {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center 38%;
+			transition: transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1);
+		}
+	}
+
+	.details {
+		padding: 20px 28px 26px;
+		margin-top: 10px !important;
+		text-align: center;
+
+		.name {
+			margin: 0;
+			font-size: clamp(32px, 3.5vw, 44px);
+			font-weight: 600;
+			line-height: 1.12;
+			overflow-wrap: anywhere;
+
+			margin-bottom: 45px;
+		}
+
+		.description {
+			max-width: 30ch;
+			margin: 18px auto 0;
+			color: var(--card-muted);
+			font-size: 14px;
+			line-height: 1.65;
+		}
+	}
+
+	.socials {
+		display: flex;
+		justify-content: center;
+		gap: 18px;
+		margin-top: 28px;
+
+		.socialLink {
+			display: grid;
+			width: 42px;
+			height: 42px;
+			place-items: center;
+			color: var(--card-ink);
+			border-radius: 50%;
+			transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+
+			&:hover {
+				background-color: rgba(90, 98, 94, 0.16);
+				border-radius: 8px;
+				box-shadow: inset 0 0 0 42px rgba(90, 98, 94, 0.16);
+				transform: translateY(-2px);
+			}
+
+			&:focus-visible {
+				background-color: rgba(90, 98, 94, 0.16);
+				border-radius: 8px;
+				box-shadow: inset 0 0 0 42px rgba(90, 98, 94, 0.16);
+				outline: 2px solid var(--card-accent);
+				outline-offset: 3px;
+				transform: translateY(-2px);
+			}
+
+			&:hover .socialIcon,
+			&:focus-visible .socialIcon {
+				color: var(--card-accent);
+			}
+		}
+	}
+
+	.socialIcon {
+		width: 21px;
+		height: 21px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 1.8;
+
+		path:first-child:last-child {
+			fill: currentColor;
+			stroke: none;
+		}
+	}
+}
+
+@media (max-width: 700px) {
+	.card {
+		width: 100%;
+		min-height: min(730px, calc(100svh - 32px));
+
+		.imageFrame {
+			height: 284px;
+			width: min(240px, calc(100% - 32px));
+			margin: 20px auto 0;
+		}
+
+		.details {
+			padding: 20px 24px 24px;
+
+			.name {
+				font-size: clamp(34px, 9vw, 44px);
+			}
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.portrait,
+	.socialLink {
+		transition: none;
+	}
+}
