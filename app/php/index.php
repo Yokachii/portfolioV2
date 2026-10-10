@@ -208,6 +208,18 @@
         // {w:400,p:500,bgc:'indianred',  x:300,y:-1500,z:0, id:"testtt"},
     ]
 
+
+    let aoCubes = [
+        {id:"horizon",w:5000,p:10,h:10 , x:-2500,y:-20000,z:0},
+
+        {id:"petitSol",w:100,p:100,h:100 , x:200,y:0,z:0},
+        {id:"mur",w:100,p:100,h:300 , x:400,y:0,z:0},
+        {id:"petitVentre",w:100,p:100,h:100 , x:600,y:0,z:100},
+        {id:"petitTete",w:100,p:100,h:100 , x:800,y:0,z:200},
+        {id:"lustre",w:100,p:100,h:100 , x:1000,y:0,z:350},
+        {id:"lampadaire",w:100,p:100,h:100 , x:1000,y:0,z:700},
+    ];
+
     let aoEllipse = [
         {w:400,p:700,bgc:'indianred',  x:300,y:-1600,z:0, id:"ABC"},
         {w:400,p:700,bgc:'red',  x:300,y:-2400,z:0},
@@ -714,14 +726,11 @@
 
     // cube({id:"minecraft",w:100,p:100,h:100})
     // cube({id:"minecraft",w:100,p:200,h:300 , x:10,y:30,z:58})
-    cube({id:"horizon",w:5000,p:10,h:10 , x:-2500,y:-20000,z:0})
-
-    cube({id:"petitSol",w:100,p:100,h:100 , x:200,y:0,z:0})
-    cube({id:"mur",w:100,p:100,h:300 , x:400,y:0,z:0})
-    cube({id:"petitVentre",w:100,p:100,h:100 , x:600,y:0,z:100})
-    cube({id:"petitTete",w:100,p:100,h:100 , x:800,y:0,z:200})
-    cube({id:"lustre",w:100,p:100,h:100 , x:1000,y:0,z:350})
-    cube({id:"lampadaire",w:100,p:100,h:100 , x:1000,y:0,z:700})
+    for(let k in aoCubes){
+        let x = aoCubes[k]
+        if(!x.id) x.id=setIdHtmlUniq()
+        cube(x)
+    }
 
     //
     // cube({id:"test",w:100,p:200,h:300 , x:60,y:53,z:14})
@@ -886,21 +895,6 @@
         }
         majCmd()
     }
-
-
-    // function deplacerEnHautH(dist){
-    //     setH({ajouter:true,y:-dist})
-    //     // setH({ajouter:true,y:-dist})
-    // }
-    // function deplacerADroiteH(dist){
-    //     setH({ajouter:true,x:dist})
-    // }
-    // function deplacerEnBasH(dist){
-    //     setH({ajouter:true,y:dist})
-    // }
-    // function deplacerAGaucheH(dist){
-    //     setH({ajouter:true,x:-dist})
-    // }
 
 
     function deplacerHCooPolaire(angle,dist){
@@ -1389,6 +1383,97 @@
                             }
                             break;
                     }
+                }
+
+
+                for (let x of aoCubes) {
+
+                    let deplacementXH2 = 0
+                    let deplacementYH2 = 0
+
+                    let heightCube = x.hauteur
+                    let topCube = parseInt(x.y)-heightCube
+                    let bottomCube = parseInt(x.y)
+
+                    let bCollisionZBefore = (true
+                        && oH.z+hauteurHitboxH>topCube
+                        && oH.z<bottomCube
+                    )
+
+
+                    if(!bConfigBloquerCommande){
+                        deplacementXH2 = Math.sin(deg2rad(degStickGo-oMap.rz))*pasDroit
+                        deplacementYH2 = Math.cos(deg2rad(degStickGo-oMap.rz))*pasDroit
+                    }
+
+                    const carre = document.getElementById(x.id)
+
+                    let bPassageXBefore = (true
+                        && oH.x+largeurHitboxH>(parseInt(carre.style.left)|0)
+                        && oH.x<(parseInt(carre.style.left)|0)+(parseInt(carre.style.width)|0)
+                    )
+                    let bPassageYBefore = (true
+                        && oH.y+profondeurHitboxH>(parseInt(carre.style.top)|0)
+                        && oH.y<(parseInt(carre.style.height)|0)+(parseInt(carre.style.top)|0)
+                    )
+                    let bCollisionXBefore = bPassageXBefore // DEBUG pour l'instant, après on gèrera l'altitude avec les sauts etc.
+                    let bCollisionYBefore = bPassageYBefore // DEBUG pour l'instant, après on gèrera l'altitude avec les sauts etc.
+
+                    let bPassageXAfter = (true
+                        && oH.x+Math.sin(deg2rad(degStickGo-oMap.rz))*pasDroit+largeurHitboxH>(parseInt(carre.style.left)|0)
+                        && oH.x+Math.sin(deg2rad(degStickGo-oMap.rz))*pasDroit<(parseInt(carre.style.left)|0)+(parseInt(carre.style.width)|0)
+                    )
+                    let bPassageYAfter = (true
+                        && oH.y-Math.cos(deg2rad(degStickGo-oMap.rz))*pasDroit+profondeurHitboxH>(parseInt(carre.style.top)|0)
+                        && oH.y-Math.cos(deg2rad(degStickGo-oMap.rz))*pasDroit<(parseInt(carre.style.height)|0)+(parseInt(carre.style.top)|0)
+                    )
+                    let bPassageZAfter = (true
+                        && oH.z+Math.sin(deg2rad(degStickGo-oMap.rz))*pasDroit+hauteurHitboxH>topCube
+                        && oH.z+Math.sin(deg2rad(degStickGo-oMap.rz))*pasDroit<bottomCube
+                    )
+
+
+                    // TAPIS ROULANT
+
+                    let vitesseTapis = oTapis.vitesse
+                    let angleTapis = oTapis.angle
+
+                    let deplacementXTapis = Math.sin(deg2rad(angleTapis))*vitesseTapis
+                    let deplacementYTapis = Math.cos(deg2rad(angleTapis))*vitesseTapis
+
+                    let tmp = deplacementXH2
+                    deplacementXH2 += deplacementXTapis
+                    deplacementYH2 += deplacementYTapis
+
+                    deplacementXH = deplacementXH2
+                    deplacementYH = deplacementYH2
+
+                    bPassageXAfter = (true
+                        && oH.x+deplacementXH2+largeurHitboxH>(parseInt(carre.style.left)|0)
+                        && oH.x+deplacementXH2<(parseInt(carre.style.left)|0)+(parseInt(carre.style.width)|0)
+                    )
+                    bPassageYAfter = (true
+                        && oH.y-deplacementYH2+profondeurHitboxH>(parseInt(carre.style.top)|0)
+                        && oH.y-deplacementYH2<(parseInt(carre.style.height)|0)+(parseInt(carre.style.top)|0)
+                    )
+                    // bPassageZAfter = (true
+                    //     && oH.z+deplacementYH2+hauteurHitboxH>topCube
+                    //     && oH.z+deplacementYH2<bottomCube
+                    // )
+
+
+                    let bCollisionXAfter = bPassageXAfter // DEBUG pour l'instant, après on gèrera l'altitude avec les sauts etc.
+                    let bCollisionYAfter = bPassageYAfter // DEBUG pour l'instant, après on gèrera l'altitude avec les sauts etc.
+                    let bCollisionZAfter = bPassageZAfter // DEBUG pour l'instant, après on gèrera l'altitude avec les sauts etc.
+
+                    if(bCollisionXBefore&&!bCollisionYBefore&&bCollisionXAfter&&bCollisionYAfter){
+                        bDeplacementYCourant = false
+                    }else if(!bCollisionXBefore&&bCollisionYBefore&&bCollisionXAfter&&bCollisionYAfter){
+                        bDeplacementXCourant = false
+                    }else if(bCollisionZBefore&&!bCollisionYBefore&&bCollisionZAfter&&bCollisionYAfter){
+                        bDeplacementYCourant = false
+                    }
+
                 }
 
 

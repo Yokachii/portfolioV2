@@ -37,6 +37,66 @@ export const blogsDatas:Record<string,PageType> = {
         }
     },
 
+    "3d-engine":{
+        createdAt:"2022-12-19",
+        tags:["informatique", "programmation", "simulation", "3D"],
+        coverImage:"/projects/3d-engine/cover.png",
+        header:{
+            title:"3D engine",
+            description:"This is one of my first real web project, i started it in 2022 and finished it in 2023. It's a really basic 3D engine that allow the user to move around a 3D scene with a couple sprites",
+        },
+        main:{
+            content:[
+                {type:"img",alt:"final product",url:"/projects/3d-engine/cover.png"},
+                {type:"str",text:"The interesting part of this project is that it is actually a 3D engine entirely built with JavaScript and HTML, no lib, nothing, it is just one .HTML file with no dependencies.."},
+                {type:"linkList",title:"Usefull links",content:[
+                    {title:"The link to access the project online",url:"/3d/engine-2023"},
+                ]},
+
+                {type:"str",text:"The project use the CSS transforms property to create a 3D effect, and the user can move around the scene with the keyboard and arrows. The engine is really basic, but it was a fun project to work on and i learned a lot about CSS and JavaScript."},
+                {type:"str",text:"The rendering use sprites, and then use the JS and CSS to cut the image and display the right frame depending on the state of the animation."},
+                {type:"img",alt:"Finished 4 keys keypad",url:"/projects/3d-engine/stella_walk_1.png"},
+
+                {type:"str",text:"I also added a basic collision system, detection the colision between the player, circle, elipses and cubes."},
+                {type:"img",alt:"Finished 4 keys keypad",url:"/projects/3d-engine/colision.png"},
+
+                {type:"str",text:"There is 3D cubes, decorative trees, and colision tests"},
+                {type:"img",alt:"Finished 4 keys keypad",url:"/projects/3d-engine/tree.png"},
+
+                {type:"str",text:"I also added a couple of different test surfaces applying different effects to the player when he is on them, like a slippery surface, a sticky surface, etc..."},
+                {type:"img",alt:"Finished 4 keys keypad",url:"/projects/3d-engine/tapis.png"},
+
+                {type:"str",text:"The player can also use shift to sprint and A to use a spyglass and zoom on things far away, E also enable the player to center back the camera on him"},
+            ]
+        }
+    },
+
+    "ant-sim":{
+        createdAt:"2026-03-24",
+        tags:["informatique", "programmation", "simulation", "2D"],
+        coverImage:"/projects/ant/ant2.png",
+        header:{
+            title:"2D simulation",
+            description:"This is a 2D ants simulation, the goal of this project is to emulate the behavior of ants in a colony. The ants will move around the environment and interact with each other and the environment.",
+        },
+        main:{
+            content:[
+                {type:"img",alt:"final product",url:"/projects/ant/ant2.png"},
+                {type:"str",text:"This "},
+
+                {type:"linkList",title:"Links",content:[
+                    {title:"V1 Project link",url:"/ant"},
+                    {title:"V2 Project link",url:"/ant2"},
+                ]},
+
+                {type:"str",text:"For the first version i only used HTML elements and basic js, but i was quickly restricted by the viual and other limitations."},
+                {type:"img",alt:"V1",url:"/projects/ant/ant1.png"},
+                {type:"str",text:"I then switched to using a canvas on my nextJs project and a bigger architecture with separated files."},
+                {type:"img",alt:"V2",url:"/projects/ant/ant2.png"},
+            ]
+        }
+    },
+
     "split-keyboard-1":{
         createdAt:"2026-03-08",
         tags:["electronique", "programmation", "clavier", "impression 3D"],
