@@ -61,7 +61,7 @@ function resolveActiveNavId(pathname: string): string | null {
 
 function ShellChrome({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
-    const { isLeaving, isEntering, hasLoadedFromNav, phase, navigate } = usePageTransition();
+    const { isLeaving, hasLoadedFromNav, phase, navigate } = usePageTransition();
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [isNavVisible, setIsNavVisible] = useState(true);
@@ -139,10 +139,17 @@ function ShellChrome({ children }: { children: React.ReactNode }) {
             </Suspense>
 
             <div
-                className={`${style.page}${isLeaving ? ` ${style.pageLeaving}` : ""}${isEntering ? ` ${style.pageEntering}` : ""}`}
+                className={`${style.page}${isLeaving ? ` ${style.pageLeaving}` : ""}`}
                 data-transition={phase}
             >
-                {children}
+                {/* Enter animation lives on a keyed child so leave/idle class
+                    changes on the parent never restart title letter animations. */}
+                <div
+                    key={pathname}
+                    className={hasLoadedFromNav ? style.pageEntering : undefined}
+                >
+                    {children}
+                </div>
             </div>
         </div>
     );

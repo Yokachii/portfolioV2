@@ -37,12 +37,18 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
         setHasLoadedFromNav(true);
     }, []);
 
-    if (pathname !== seenPath) {
+    const pathChanged = pathname !== seenPath;
+    if (pathChanged) {
         setSeenPath(pathname);
         if (fromNavSession) {
             setPhase("entering");
+        } else {
+            setPhase("idle");
         }
     }
+
+    const visualPhase: TransitionPhase =
+        pathChanged && fromNavSession ? "entering" : phase;
 
     const consumeNavParam = useCallback(() => {
         markLoadedFromNav();
@@ -50,14 +56,14 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     }, [markLoadedFromNav, pathname]);
 
     useEffect(() => {
-        if (phase !== "entering") return;
+        if (visualPhase !== "entering") return;
 
         if (enterTimer.current) window.clearTimeout(enterTimer.current);
         enterTimer.current = window.setTimeout(() => setPhase("idle"), ENTER_MS);
         return () => {
             if (enterTimer.current) window.clearTimeout(enterTimer.current);
         };
-    }, [phase, pathname]);
+    }, [visualPhase, pathname]);
 
     const navigate = useCallback(
         (href: string) => {
@@ -84,9 +90,9 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     return (
         <TransitionContext.Provider
             value={{
-                phase,
-                isLeaving: phase === "leaving",
-                isEntering: phase === "entering",
+                phase: visualPhase,
+                isLeaving: visualPhase === "leaving",
+                isEntering: visualPhase === "entering",
                 hasLoadedFromNav,
                 navigate,
                 consumeNavParam,
