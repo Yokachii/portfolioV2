@@ -37,4 +37,5 @@ export type PageType = {
     coverImage:string;
     header:HeaderType;
     main:MainType;
+    url?:string;
 }

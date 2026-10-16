@@ -40,7 +40,7 @@ export const blogsDatas:Record<string,PageType> = {
     "framework-picture":{
         createdAt:"2024-06-13",
         tags:["web", "informatique", "design"],
-        coverImage:"/projects/keypad1x4/cover.webp",
+        coverImage:"/projects/framework/main.png",
         header:{
             title:"Framework Picture",
             description:"I made this 'showcase website' for a photograpger, it was a challenging and fun small project",
@@ -59,10 +59,25 @@ export const blogsDatas:Record<string,PageType> = {
                 {type:"str",text:"This was in fact one of my first experience dealing with a customer when doing a website, it was pretty challenging but was really interesting and i learned a lot"},
 
                 {type:"str",text:"It was nice to be able to work with original images, and someone's ideas to use"},
+                {type:"img",alt:"final product",url:"/projects/framework/contact.png"},
                 {type:"str",text:"I am overall pleased with the result, even if the project is quite old"},
                 
             ]
         }
+    },
+    "hallay":{
+        createdAt:"2024-08-11",
+        tags:["web", "informatique", "design"],
+        coverImage:"/projects/hallay/main.png",
+        header:{
+            title:"Hallay",
+            description:"This is a small project that i made as a small website for a friend of mine.",
+        },
+        main:{
+            content:[
+            ]
+        },
+        url:"https://hallay-one.vercel.app",
     },
 
     "3d-engine":{
@@ -165,15 +180,64 @@ export const blogsDatas:Record<string,PageType> = {
                 {type:"str",text:"Before starting to solder the top case to the bottom part i took the cable to connect both of my case together and wire the button on the right case"},
                 {type:"img",alt:"Bottom case with the connecting cable and the button",url:"/projects/split-keyboard1/bottomwirebutton.webp"},
                 {type:"str",text:"Next step was to solder the matrix + slider of the right case to the cables, so that i could close it and only work on the part with the mcu."},
-                {type:"str",text:"This sted completed i could start by soldering the pico to the pins so that it will not move when i will solder the rest"},
+                {type:"str",text:"This step completed i could start by soldering the pico to the pins so that it will not move when i will solder the rest"},
 
+            ]
+        }
+    },
+
+    "chess-game":{
+        createdAt:"2023-03-08",
+        tags:["informatique", "socket", "chess", "database"],
+        coverImage:"/projects/chess/main.png",
+        header:{
+            title:"Socket Chess game",
+            description:"This is a chess game that i made with socket.io, the goal of this project was to learn how to use socket.io and how to make a multiplayer game. The game is not actually playable online but the user & socket system work.",
+        },
+        main:{
+            content:[
+                {type:"img",alt:"Website game",url:"/projects/chess/V1/game.png"},
+                {type:"list",title:"Tools used",content:[
+                    "Socket.IO",
+                    "SQL database (...)",
+                    "Next.Js",
+                ]},
+                {type:"linkList",title:"Usefull links",content:[
+                    {title:"Chess game url",url:"https://"},
+                    {title:"Project's Github",url:"https://"},
+                    {title:"Socket.io",url:"https://makerworld.com/en/models/2057480-baikal-split-keyboard-handwired-corne-zmk-ergo#profileId-2221061"},
+                    {title:"Next.js",url:"https://docs.qmk.fm"},
+                ]},
+                {type:"str",text:"This project was a fun one, i learned a lot about socket.io and how to make a multiplayer game."},
+
+                {type:"str",text:"I started by making a simple landing page, for the design i did something really similar to lichess (lichess.org) because the goal of the projecgt was really to learn about the backend (SocketIo, database) and not really the front and design"},
+                {type:"img",alt:"landing",url:"/projects/chess/V1/landing.png"},
+                
+                
+            ]
+        }
+    },
+
+    "infinite-creation":{
+        createdAt:"2025-01-27",
+        tags:["informatique", "socket", "chess", "database"],
+        coverImage:"/projects/infinite-creation/main.png",
+        header:{
+            title:"Infinite creation",
+            description:"This is a showcase website i made for someone who was selling custom items (mugs, shirt, etc..)",
+        },
+        main:{
+            content:[
+                {type:"img",alt:"Landing",url:"/projects/infinite-creation/main.png"},
+                {type:"linkList",title:"",content:[
+                    {title:"Website url's",url:"https://infinite-creation-theta.vercel.app/"},
+                ]},
+                
             ]
         }
     }
 
 
-    // 3D engine 23
-    // Halay
     // Infinite creation
     // Chess
     // RAT1
