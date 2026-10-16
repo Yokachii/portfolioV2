@@ -9,13 +9,13 @@ import { Experience } from "../../component/portfolio/portfolio1/presentation/ex
 import { Contact } from "../../component/portfolio/portfolio1/presentation/contact/main";
 import style from "./page.module.scss";
 
-export default function Portfolio() {
+export default function Portfolio2() {
     return (
         <div className={style.portfolio}>
             <div className={style.presentation}>
 
                 <div className={style.card_container}>
-                    <InfoCard data={{ name: "Deconinck Elliot" }} />
+                    <InfoCard data={{ name: "ssDeconinck Elliot" }} />
                 </div>
 
                 <div className={style.slider_container}>

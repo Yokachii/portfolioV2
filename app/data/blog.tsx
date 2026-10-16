@@ -1,5 +1,6 @@
 import { PageType } from "../types/blog";
-
+//https://frameworkpicture-kohl.vercel.app
+//https://hallay-one.vercel.app
 export const blogsDatas:Record<string,PageType> = {
     "keypad1-4keys":{
         createdAt:"2026-02-19",
@@ -33,6 +34,33 @@ export const blogsDatas:Record<string,PageType> = {
                 {type:"img",alt:"Both parts of the case closed with the pico and keys inside",url:"/projects/keypad1x4/raspberrykeys.webp"},
                 {type:"str",text:"I just had to put the screw that are holding the two parts together and it was done! I then flashed the raspberry with circuit python and wrote a simple code to make it work. I'm really happy with the final result and i will definitely try to upgrade this project in the future"},
                 {type:"img",alt:"Finished 4 keys keypad",url:"/projects/keypad1x4/IMG_2359.jpg.webp"},
+            ]
+        }
+    },
+    "framework-picture":{
+        createdAt:"2024-06-13",
+        tags:["web", "informatique", "design"],
+        coverImage:"/projects/keypad1x4/cover.webp",
+        header:{
+            title:"Framework Picture",
+            description:"I made this 'showcase website' for a photograpger, it was a challenging and fun small project",
+        },
+        main:{
+            content:[
+                {type:"img",alt:"final product",url:"/projects/keypad1x4/cover.webp"},
+                {type:"list",title:"Skills developed",content:[
+                    "UI",
+                    "Video integration",
+                    "Image composition",
+                ]},
+                {type:"linkList",title:"Usefull links",content:[
+                    {title:"Website URL",url:"https://frameworkpicture-kohl.vercel.app"},
+                ]},
+                {type:"str",text:"This was in fact one of my first experience dealing with a customer when doing a website, it was pretty challenging but was really interesting and i learned a lot"},
+
+                {type:"str",text:"It was nice to be able to work with original images, and someone's ideas to use"},
+                {type:"str",text:"I am overall pleased with the result, even if the project is quite old"},
+                
             ]
         }
     },

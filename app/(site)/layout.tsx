@@ -9,13 +9,13 @@ import { NavParamSync, PageTransitionProvider, usePageTransition } from "./trans
 import style from "./layout.module.scss";
 
 const navItems: PortfolioNavItem[] = [
-    { id: "home", label: "Home", href: "/portfolio#home", icon: (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M3 10.5 12 3l9 7.5" />
-            <path d="M5 9.5V20h14V9.5" />
-            <path d="M10 20v-6h4v6" />
-        </svg>
-    ) },
+    // { id: "home", label: "Home", href: "/portfolio#home", icon: (
+    //     <svg viewBox="0 0 24 24" aria-hidden="true">
+    //         <path d="M3 10.5 12 3l9 7.5" />
+    //         <path d="M5 9.5V20h14V9.5" />
+    //         <path d="M10 20v-6h4v6" />
+    //     </svg>
+    // ) },
     { id: "projects", label: "All Projects", href: "/projects", icon: (
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3.5" y="4.5" width="7" height="7" rx="1.5" />
