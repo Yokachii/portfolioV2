@@ -221,7 +221,7 @@ export const blogsDatas:Record<string,PageType> = {
     "infinite-creation":{
         createdAt:"2025-01-27",
         tags:["informatique", "socket", "chess", "database"],
-        coverImage:"/projects/infinite-creation/main.png",
+        coverImage:"/projects/infinite-creation/landing.png",
         header:{
             title:"Infinite creation",
             description:"This is a showcase website i made for someone who was selling custom items (mugs, shirt, etc..)",
