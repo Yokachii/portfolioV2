@@ -12,13 +12,13 @@ const projects: ProjectItem[] = [
         title: "Framework Picture",
         description: "Front end page to present the work of a photographer, built with Next.js, featuring a responsive design and smooth animations.",
         image: "./projects/framework/main.png",
-        href: "#"
+        href: "http://localhost:3000/projects/framework-picture"
     },
     {
             title: "Socket.IO Chess App",
             description: "A real-time multiplayer chess application built with Socket.IO & Next.js, allowing players to compete against each other online.",
         image: "./projects/chess/main.png",
-        href: "#"
+        href: "http://localhost:3000/projects/chess-game"
     },
     {
         title: "3D Engine 2023",

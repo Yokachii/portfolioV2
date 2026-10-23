@@ -45,7 +45,7 @@ export const blogsDatas:Record<string,PageType> = {
         },
         main:{
             content:[
-                {type:"img",alt:"final product",url:"/projects/keypad1x4/cover.webp"},
+                {type:"img",alt:"final product",url:"/projects/framework/main.png"},
                 {type:"list",title:"Skills developed",content:[
                     "UI",
                     "Video integration",
@@ -134,6 +134,15 @@ export const blogsDatas:Record<string,PageType> = {
                 {type:"img",alt:"V1",url:"/projects/ant/ant1.png"},
                 {type:"str",text:"I then switched to using a canvas on my nextJs project and a bigger architecture with separated files."},
                 {type:"img",alt:"V2",url:"/projects/ant/ant2.png"},
+                {type:"str",text:"I fixed the ant mouvement formula, also added a lot of customizable parametters."},
+                {type:"str",text:"I made the food more meaningfull (ant can refill stam using food) and the queen can lay eggs if there is enough food in the base."},
+                {type:"str",text:"There is also a timer, and counters so you can play with parameters and see the diferent result on how long the colony survive and the food collecgted"},
+                {type:"list",title:"Next steps for the project :",content:[
+                    "Making the food respawn so that the sim can actually 'live' for longer",
+                    "Fixing some minor mouvement issue with the ants",
+                    "Trying to find actual realistic parameters",
+                    "Fix some minor stuff in the pheromone",
+                ]},
             ]
         }
     },
@@ -201,8 +210,7 @@ export const blogsDatas:Record<string,PageType> = {
                     "Next.Js",
                 ]},
                 {type:"linkList",title:"Usefull links",content:[
-                    {title:"Chess game url",url:"https://"},
-                    {title:"Project's Github",url:"https://"},
+                    {title:"Project's Github",url:"https://github.com/Yokachii/NextJs-SocketIo-LiveGame"},
                     {title:"Socket.io",url:"https://makerworld.com/en/models/2057480-baikal-split-keyboard-handwired-corne-zmk-ergo#profileId-2221061"},
                     {title:"Next.js",url:"https://docs.qmk.fm"},
                 ]},
@@ -233,7 +241,54 @@ export const blogsDatas:Record<string,PageType> = {
                 
             ]
         }
-    }
+    },
+
+    "electronique_chessboard":{
+        createdAt:"2026-03-25",
+        tags:["informatique", "electronique", "chess"],
+        coverImage:"/projects/electronique_chessboard/cover.png",
+        header:{
+            title:"Electronique Chessboard",
+            description:"This is a work in progress project, the idea is to create a chessboard with sensors and display that would allow you to play online with other people OTB (on the board)",
+        },
+        main:{
+            content:[
+                {type:"img",alt:"Landing",url:"/projects/electronique_chessboard/cover.png"},
+
+                {type:"str",text:"As said, this project is still in progress and i will update the blog as i continue to work on it."},
+
+                {type:"str",text:"I started by searching for exactly what i would need :"},
+                {type:"str",text:"For the sensors, i needed something very cheap because i was going to use a lot, i settled with A3144 hall effect sensor"},
+                {type:"str",text:"For the LED's i chosed to use adressable WS2B LED"},
+                {type:"str",text:"And for the Micro controller i took a raspberry Pi Pico WH mecause it has a lot of pins which was the main factor for the matrix, i might also use an ESP32 later on"},
+
+
+                {type:"list",title:"What i used for this project :",content:[
+                    "A3144 Hall effect sensor (x64)",
+                    "Adressable LEDS (x81)",
+                    "Raspberry pi pico",
+                    "Chessboard as a base for the project",
+                    "Small screen to display stats during a game",
+                ]},
+
+                {type:"str",text:"I started by wiring all of the 64 A3144, but then i figured out that i would actually need a level shifter between the raspberry and the sensors because they run on 5V and the raspberry in 3.3V"},
+                {type:"str",text:"I now need to make the full electrical shema and start to test the converter using a battery"},
+
+
+                {type:"list",title:"What i learned during this project :",content:[
+                    "Embeded technologie",
+                    "Matrix reading of hall effect sensor",
+                    "Wiring of multiple adressable LED",
+                    "Matrix reading of data using a microcontroller",
+                    "Handling different Voltage in a single circuit using converter and step",
+                ]},
+                {type:"linkList",title:"Usefull links",content:[
+                    {title:"Volt and nerd",url:"https://"},
+                    {title:"Inspiration",url:"https://"},
+                ]},
+            ]
+        }
+    },
 
 
     // Infinite creation
