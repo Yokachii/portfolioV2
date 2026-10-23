@@ -1,6 +1,4 @@
 import { PageType } from "../types/blog";
-//https://frameworkpicture-kohl.vercel.app
-//https://hallay-one.vercel.app
 export const blogsDatas:Record<string,PageType> = {
     "keypad1-4keys":{
         createdAt:"2026-02-19",

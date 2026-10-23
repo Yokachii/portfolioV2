@@ -11,19 +11,19 @@ const projects: ProjectItem[] = [
     {
         title: "Framework Picture",
         description: "Front end page to present the work of a photographer, built with Next.js, featuring a responsive design and smooth animations.",
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
+        image: "./projects/framework/main.png",
         href: "#"
     },
     {
             title: "Socket.IO Chess App",
             description: "A real-time multiplayer chess application built with Socket.IO & Next.js, allowing players to compete against each other online.",
-        image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=900&q=80",
+        image: "./projects/chess/main.png",
         href: "#"
     },
     {
         title: "3D Engine 2023",
         description: "A 3D engine built in PURE native web HTML JS PHP with no lib, and only divs perspective using CSS 3D transforms. Also my first big project",
-        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80",
+        image: "./projects/3d-engine/cover.png",
         href: "http://localhost:3000/3d/engine2023"
     }
 ];
