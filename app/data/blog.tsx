@@ -232,6 +232,7 @@ export const blogsDatas:Record<string,PageType> = {
             title:"Infinite creation",
             description:"This is a showcase website i made for someone who was selling custom items (mugs, shirt, etc..)",
         },
+        url:"https://infinite-creation-theta.vercel.app/",
         main:{
             content:[
                 {type:"img",alt:"Landing",url:"/projects/infinite-creation/main.png"},
