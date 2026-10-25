@@ -4,6 +4,33 @@ import React from "react";
 import { ContentItem, MainType } from "@/app/types/blog";
 import style from "./main.module.scss";
 
+function getTextStyle(item:ContentItem){
+    let res = ''
+    if(item.type=="str" && item.style){ 
+        
+        for (const s of item.style) {
+            switch (s) {
+                case 'big':
+                    res += `${style.text_big} `;
+                    break;
+                case 'bold':
+                    res += `${style.text_bold} `;
+                    break;
+                case 'small':
+                    res += `${style.text_small} `;
+                    break;
+                case 'thin':
+                    res += `${style.text_thin} `;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+    }
+    return res;
+}
+
 export function BlogMain({data}:{data:MainType}){
 
     const {content} = data;
@@ -12,7 +39,7 @@ export function BlogMain({data}:{data:MainType}){
         switch (item.type) {
             case "str":
                 return (
-                    <p className={`cursor-light ${style.blogtext}`}>{item.text}</p>
+                    <p className={`cursor-light ${style.blogtext} ${getTextStyle(item)}`}>{item.text}</p>
                 )
             case "img":
                 return (

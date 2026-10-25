@@ -291,6 +291,72 @@ export const blogsDatas:Record<string,PageType> = {
         }
     },
 
+    "perceptron":{
+        createdAt:"2026-10-08",
+        tags:["informatique", "AI", "C"],
+        coverImage:"/projects/perceptron/cover.png",
+        header:{
+            title:"Perceptron",
+            description:"This was initially a school project, but i decided to push it further to test my capacity, it is still in progress",
+        },
+        main:{
+            content:[
+                {type:"img",alt:"Landing",url:"/projects/perceptron/cover.png"},
+
+                {type:"str",text:"The idea behind this project was to learn about AI, how does a neuronne work, and how to connect them in a network in order to solve non linear problems. The project was built almost entirely in C and is available on my GitHub"},
+
+                {type:"str",text:"The first step was to build a Perceptron"},
+                {type:"str",style:["big","bold"],text:"What is a perceptron ?"},
+                {type:"str",text:"It is basically a single artificial neuronne, it can solve basic linear problems, it take a certain number of inputs and output a float"},
+                {type:"str",style:["big","bold"],text:"How do it work ?"},
+                {type:"str",text:"The idea between a Perceptron is really simple, way simpler than we might think.\nBasically the idea is that the Perceptron will output the sum of each input multiplied by a weight + a bias\nTo start with, we will only look at sigmoid output perceptrons, meaning the ouput is passed through a sigmoid func\nz = X1*W1 + X2*W2 + ... + Xi*Wi + b\ny = sigmoid(z)\nwhere Xi are the inputs, Wi the weights and b the Bias\nThen if it is >0.5 you say it is true, <0.5 false, and you compare it with the label of your data"},
+                {type:"str",style:["big","bold"],text:"How do you actually train a Perceptron ?"},
+                {type:"str",text:"It is pretty straigth-forward, if you wanna train your perceptron on a certain dataset, you start by spliting it in two, a train part that you train it on and a second part to test the abbility of the model to predict new data, then you test all the data in your training set on your perceptron, and you ajust the weights and bias of the Perceptron depending on the delta between the output of the perceptron and the output you wanted\nThe formula used to edit bias and weights is :\nfor each weight i :  w_i <- w_i + lr * (label - y) * x_i\nbiais :                b   <- b   + lr * (label - y)\nAnd repeat for as much cycle as you want/need\nYou also want to shuffle your dataset at each cycle otherwise your perceptron might prioritize certain data because of the order"},
+                {type:"str",style:["bold"],text:"How do you test your perceptron on a dataset ?"},
+                {type:"str",text:"The easiest way to test it is by simply running it through your test dataset, if the output of the perceptron predicted the label well, you count it, then you just make a probability and you get an accuracy which is the % of data that the perceptron predicted correctly"},
+                {type:"str",text:"The flaws with this way of calculating accuracy :"},
+                {type:"str",text:"For exemple if your dataset only contain data which label are 1, a perceptron which return only 1 will have 100% accuracy but will not have learned anything\nHow to correct it ?\nThe basic way of fixing this issue and have a better reading of data is to use the confusion matrix of your perceptron\nThe idea is that, instead of just counting the amount of correct predictions, you are counting :\nFP : False positive\nFN : False Negative\nTP : True positive\nTN : True negative\nIf your Perceptron have 90 True positive, 10 False positive, 0TN, 0FN, It means it only predict 1, and your dataset is 90% 1 so it get a 90% accuracy"},
+
+                {type:"str",text:"With that in mind, it is time to start coding our perceptron, the idea being very simple, the main thing we will have to worry about is just to allocate all the memory correctly because we will be working in C."},
+
+                {type:"str",text:"After coding the basic perceptron in C, i created a secondary C program that allow me to run my perceptron with a lot of different parameters and then put the output in a csv file, the idea being to be able to make a graph out of it"},
+
+                {type:"str",text:"It is pretty hard to visualise the data well on this first part because we use a dataset champignons.csv which contain only 40data, meaning that the testing set does not contain a lot of data, so we can really make a usefull graph.\nThe best option i found was to use a heatmap to display a bit more things"},
+
+                {type:"img",alt:"Landing",url:"/projects/perceptron/perceptron/heatmap2.png"},
+                {type:"str",text:"Number of cycle needed to reach the maximum accuracy depending on the ratio(Training set / Testing set) and the learning rate (lr)"},
+
+                {type:"str",text:"What we can see here (even with not much data). If the ratio is very hight (0.9) meaning 90% of the data goes in training set and 10% in testing, we see that it converge really fast, that is because the dataset used is so small, here, 0.9 ratio mean only 4datas in testing set, so even with just random searching it will likely land on a 100% pretty fast.\nWhat is still interesting even if the data is not representative :\nWe clearly see that in most case, the higher the lr the faster it will converge to the best accuracy.\nWhat we dont see :\nA lr too hight will also result in an accuracy that will oscilate a lot and never reach a trully stable final accuracy. That is why, later in the project we are going to fix it by making the learning rate decrease as cycles pass."},
+
+                {type:"str",style:["big","bold"],text:"Next step : The network"},
+
+                {type:"str",text:"Now that the Perceptron work individually, can solve easy problem, and that we have a good idea of how it work, we are going to try to connect multiple neuronns together to solve harder problems"},
+
+                {type:"str",style:["bold"],text:"The limitation of single neuron :"},
+                {type:"str",text:"The issue with a single neuron being that it use the ponderated sum of the data in, so it will never be able to solve non linear problems. For exemple, running my single perceptron on a pretty simple non linear problem (easy spiral), it start a 49.5% accuracy, and after 100k cycle, it reach 54% so it likely didnt learned anything, we clearly see the limitation of the single perceptron"},
+                {type:"str",text:"non-linear problems being for exemple : \nCircle : because the equation of a circle is x^2 + y^2 = 1, a system using equations similar to a perceptron will not be able to solve it\nSpiral : For similar reason, the equation of the spiral is even more complicated as a circle, it will be impossible for a Perceptron to solve it."},
+                {type:"str",text:"The idea behind a network :"},
+                {type:"img",alt:'Neural network representation',url:"/projects/perceptron/network/neural_network.png"},
+                {type:"str",text:"You position the neurons in layers, input layer (usually as much neurons as inputs in your data), hidden layers with an arbitraty numbers of neurons, and output with one neuron.\nEach neurons take as inputs the outputs of All the neurons of the last layer."},
+
+
+
+                {type:"list",title:"Skills used in the project :",content:[
+                    "Memory allocation (C)",
+                    "Knowledge of the way a Perceptron and a basic neuron network work",
+                    "Data analysis",
+                    "Collecting data and visualising it as a graph",
+                    "Usage of debuging tools for C (gdb,Valgrind)",
+                ]},
+
+                {type:"linkList",title:"Usefull links",content:[
+                    {title:"Perceptron GitHub :",url:"https://github.com/Yokachii/perceptron"},
+                    {title:"Perceptron network GitHub :",url:"https://github.com/Yokachii/Perceptron_network"},
+                ]},
+            ]
+        }
+    }, 
+
 
     // Infinite creation
     // Chess
