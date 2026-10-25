@@ -8,12 +8,12 @@ type Tool = {
 };
 
 const tools: Tool[] = [
-    { name: "React.js", mark: "Re", detail: "UI library", tone: "blue" },
+    { name: "React.js", mark: "R", detail: "UI library", tone: "blue" },
     { name: "Next.js", mark: "N", detail: "Web framework", tone: "neutral" },
-    { name: "Node.js", mark: "No", detail: "JavaScript runtime", tone: "lime" },
+    { name: "Node.js", mark: "N", detail: "JavaScript runtime", tone: "lime" },
     { name: "JavaScript", mark: "JS", detail: "Programming", tone: "coral" },
     { name: "TypeScript", mark: "TS", detail: "Typed JavaScript", tone: "blue" },
-    { name: "PHP", mark: "php", detail: "Server-side", tone: "violet" },
+    { name: "PHP", mark: "Php", detail: "Server-side", tone: "violet" },
     { name: "HTML", mark: "5", detail: "Markup", tone: "coral" },
     { name: "SCSS", mark: "Sc", detail: "Stylesheets", tone: "violet" },
     { name: "Sass", mark: "Sa", detail: "CSS preprocessor", tone: "coral" },

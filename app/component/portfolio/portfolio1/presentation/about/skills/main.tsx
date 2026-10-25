@@ -8,14 +8,14 @@ type Skill = {
 };
 
 const skills: Skill[] = [
-    { name: "React.js", mark: "Re", detail: "UI library", tone: "blue" },
+    { name: "React.js", mark: "R", detail: "UI library", tone: "blue" },
     { name: "Next.js", mark: "N", detail: "Web framework", tone: "neutral" },
-    { name: "Node.js", mark: "No", detail: "JavaScript runtime", tone: "lime" },
+    { name: "Node.js", mark: "N", detail: "JavaScript runtime", tone: "lime" },
     { name: "TypeScript", mark: "TS", detail: "Typed JavaScript", tone: "blue" },
     { name: "JavaScript", mark: "JS", detail: "Programming", tone: "coral" },
     { name: "C", mark: "C", detail: "Programming", tone: "blue" },
     { name: "Python", mark: "Py", detail: "Programming", tone: "blue" },
-    { name: "PHP", mark: "php", detail: "Server-side", tone: "violet" },
+    { name: "PHP", mark: "Php", detail: "Server-side", tone: "violet" },
     { name: "HTML", mark: "5", detail: "Markup", tone: "coral" },
     { name: "SCSS", mark: "Sc", detail: "Stylesheets", tone: "violet" },
     { name: "Figma", mark: "Fg", detail: "Interface design", tone: "violet" },

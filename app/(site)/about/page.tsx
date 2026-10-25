@@ -5,8 +5,8 @@ import { SliderPart } from "../../component/portfolio/portfolio1/presentation/ma
 import { AboutIntro } from "../../component/portfolio/portfolio1/presentation/about/intro/main";
 import { AboutJourney } from "../../component/portfolio/portfolio1/presentation/about/journey/main";
 import { AboutSkills } from "../../component/portfolio/portfolio1/presentation/about/skills/main";
-import { AboutContact } from "../../component/portfolio/portfolio1/presentation/about/contact/main";
 import style from "./page.module.scss";
+import { Contact } from "@/app/component/portfolio/portfolio1/presentation/contact/main";
 
 export default function About() {
     return (
@@ -50,10 +50,10 @@ export default function About() {
                         <AboutIntro />
                         <AboutJourney />
                         <AboutSkills />
-                        <AboutContact />
                     </SliderPart>
                 </div>
             </div>
+            <Contact />
         </div>
     );
 }

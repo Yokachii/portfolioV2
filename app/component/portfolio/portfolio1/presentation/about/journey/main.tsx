@@ -56,12 +56,6 @@ export function AboutJourney() {
                             <time className={style.period}>{entry.period}</time>
                         </div>
 
-                        <div className={style.arrow} aria-hidden="true">
-                            <svg viewBox="0 0 24 24" className={style.arrowIcon}>
-                                <path d="M5 12h12" />
-                                <path d="M13 5l7 7-7 7" />
-                            </svg>
-                        </div>
                     </article>
                 ))}
             </div>
