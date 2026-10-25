@@ -301,7 +301,7 @@ export const blogsDatas:Record<string,PageType> = {
         },
         main:{
             content:[
-                {type:"img",alt:"Landing",url:"/projects/perceptron/cover.png"},
+                {type:"img",alt:"Landing",url:"/projects/perceptron/network/neural_network.png"},
 
                 {type:"str",text:"The idea behind this project was to learn about AI, how does a neuronne work, and how to connect them in a network in order to solve non linear problems. The project was built almost entirely in C and is available on my GitHub"},
 
