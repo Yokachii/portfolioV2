@@ -339,6 +339,11 @@ export const blogsDatas:Record<string,PageType> = {
                 {type:"img",alt:'Neural network representation',url:"/projects/perceptron/network/neural_network.png"},
                 {type:"str",text:"You position the neurons in layers, input layer (usually as much neurons as inputs in your data), hidden layers with an arbitraty numbers of neurons, and output with one neuron.\nEach neurons take as inputs the outputs of All the neurons of the last layer."},
 
+                {type:"str",text:"Those are the charts i was eable to draw using the network i created on a complicated spiral problem"},
+                {type:'img',url:'/projects/perceptron/network/courbes_acc_moyenne.png',alt:'Courbe'},
+                {type:'img',url:'/projects/perceptron/network/courbes_acc_par_run.png',alt:'Courbe2'},
+                {type:"str",text:"We clearly see that 4neurones can not solve this, 8might be a bit better if ran on a bit more cycles, and 16 can definitely solve it quite easily\nTho 32 perceptron per layer get the best results. We also see that having 2 hidden layers is not nescecary the best for these kind of problems, because it will need much more time to reach stability and a good accuracy."},
+
 
 
                 {type:"list",title:"Skills used in the project :",content:[

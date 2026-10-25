@@ -55,7 +55,7 @@ export function BlogMain({data}:{data:MainType}){
             case "img":
                 return (
                     <figure className={style.blogFigure}>
-                        <img src={item.url} alt={item.alt} className={style.blogimg}/>
+                        <img src={item.url} alt={item.alt} className={`${style.blogimg} cursor-light`}/>
                     </figure>
                 )
             case "list":
