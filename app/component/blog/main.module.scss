@@ -105,6 +105,9 @@
 	font-size: clamp(15px, 1.05vw, 17px);
 	font-weight: 300;
 	line-height: 1.85;
+	.blogtext {
+	white-space: pre-line;
+}
 }
 
 .text_big{
@@ -112,7 +115,7 @@
 }
 
 .text_bold{
-	font-style: bold !important;
+	font-weight: 700 !important;
 }
 
 .text_small{

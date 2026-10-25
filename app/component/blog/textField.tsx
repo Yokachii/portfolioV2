@@ -4,6 +4,15 @@ import React from "react";
 import { ContentItem, MainType } from "@/app/types/blog";
 import style from "./main.module.scss";
 
+function renderText(text: string) {
+    return text.split(/\\n|\n/).map((line, i, arr) => (
+        <React.Fragment key={i}>
+            {line}
+            {i < arr.length - 1 && <br />}
+        </React.Fragment>
+    ));
+}
+
 function getTextStyle(item:ContentItem){
     let res = ''
     if(item.type=="str" && item.style){ 
@@ -39,7 +48,9 @@ export function BlogMain({data}:{data:MainType}){
         switch (item.type) {
             case "str":
                 return (
-                    <p className={`cursor-light ${style.blogtext} ${getTextStyle(item)}`}>{item.text}</p>
+                    <p className={`cursor-light ${style.blogtext} ${getTextStyle(item)}`}>
+                        {renderText(item.text)}
+                    </p>
                 )
             case "img":
                 return (
