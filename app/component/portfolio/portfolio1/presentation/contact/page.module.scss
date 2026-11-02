@@ -25,30 +25,40 @@
 	margin: auto 0;
 	text-align: center;
 
-	.open_to_work{
+	.open_to_work {
+		margin-bottom: 1rem !important;
+		box-sizing: border-box;
+		width: fit-content;
+		max-width: 100%;
 		font-family: 'Poppins', sans-serif;
 		font-weight: 400;
 		color: var(--muted);
 		background-color: var(--color-main);
 		box-shadow: 0 22px 58px var(--theme-contact-glow);
-		
-		max-width: 11rem;
-		margin:0 auto;
+		margin: 0 auto;
 		border-radius: .3rem;
 
 		align-items: center;
-		span{
-			
-			margin:0 auto;
+
+		> span {
+			box-sizing: border-box;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: .4rem;
+			max-width: 100%;
+			margin: 0 auto;
 			padding: .1rem .8rem;
-			display:flex;
+		}
 
-			.child{
-				margin : auto 0 !important;
-			}
-			span{
+		svg.child {
+			flex: 0 0 auto;
+		}
 
-			}
+		span.child {
+			flex: 0 1 auto;
+			min-width: 0;
+			overflow-wrap: anywhere;
 		}
 	}
 
