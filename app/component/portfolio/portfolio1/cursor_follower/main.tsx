@@ -120,6 +120,7 @@ function createRing(canvas: HTMLCanvasElement, c: RingConfig) {
     let current: Params = { ...REST };
     let from: Params = { ...REST };
     let t0 = 0;
+    let isOverLightText = false;
 
     const pass = (ctx: CanvasRenderingContext2D, p: Params, now: number, ghost: number, alpha: number) => {
         const R = c.radius * p.scale;
@@ -158,13 +159,19 @@ function createRing(canvas: HTMLCanvasElement, c: RingConfig) {
                 else ctx.lineTo(x, y);
             }
         }
+        ctx.strokeStyle = getComputedStyle(canvas).getPropertyValue("--theme-cursor-outline").trim() || "#f4f6ee";
+        ctx.lineWidth += 2;
+        ctx.stroke();
+        ctx.strokeStyle = getComputedStyle(canvas)
+            .getPropertyValue(isOverLightText ? "--theme-cursor-contrast" : "--theme-cursor")
+            .trim() || (isOverLightText ? "#160606" : "rgb(97 28 28)");
+        ctx.lineWidth -= 2;
         ctx.stroke();
     };
 
     const draw = (now: number) => {
         ctx.clearRect(0, 0, SIZE, SIZE);
         if (current.alpha < 0.01) return;
-        ctx.strokeStyle = getComputedStyle(canvas).getPropertyValue("--theme-cursor").trim() || "rgb(97 28 28)";
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         pass(ctx, current, now, 0, current.alpha);
@@ -197,6 +204,11 @@ function createRing(canvas: HTMLCanvasElement, c: RingConfig) {
         },
         redraw(now: number) {
             draw(now);
+        },
+        setTextContrast(isOverText: boolean) {
+            if (isOverLightText === isOverText) return;
+            isOverLightText = isOverText;
+            draw(performance.now());
         },
         /** Retourne true tant que l'animation continue. */
         tick(now: number) {
@@ -323,6 +335,9 @@ export function CursorFollower() {
 
             targetX = event.clientX;
             targetY = event.clientY;
+            const textTarget = event.target instanceof Element && event.target.closest(".cursor-light") !== null;
+            smallRing.setTextContrast(textTarget);
+            largeRing.setTextContrast(textTarget);
 
             if (!hasPointerPosition) {
                 smallX = targetX;
@@ -354,6 +369,8 @@ export function CursorFollower() {
 
         const handlePointerLeave = () => {
             hasPointerPosition = false;
+            smallRing.setTextContrast(false);
+            largeRing.setTextContrast(false);
             smallCircle.style.opacity = "0";
             largeCircle.style.opacity = "0";
             resetReactiveAnimation();

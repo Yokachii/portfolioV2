@@ -95,6 +95,7 @@
 			inset 0 -1px 0 var(--theme-glass-shadow-line);
 		color: var(--theme-text);
 		cursor: pointer;
+		pointer-events: auto;
 		backdrop-filter: blur(24px) saturate(220%) brightness(120%);
 		-webkit-backdrop-filter: blur(24px) saturate(220%) brightness(120%);
 		transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
