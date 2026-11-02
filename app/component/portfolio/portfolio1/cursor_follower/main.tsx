@@ -164,7 +164,7 @@ function createRing(canvas: HTMLCanvasElement, c: RingConfig) {
     const draw = (now: number) => {
         ctx.clearRect(0, 0, SIZE, SIZE);
         if (current.alpha < 0.01) return;
-        ctx.strokeStyle = getComputedStyle(canvas).getPropertyValue("--theme-cursor").trim() || "rgb(212 255 88)";
+        ctx.strokeStyle = getComputedStyle(canvas).getPropertyValue("--theme-cursor").trim() || "rgb(97 28 28)";
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         pass(ctx, current, now, 0, current.alpha);
@@ -269,7 +269,6 @@ export function CursorFollower() {
         let animationFrame = 0;
         let ringFrame = 0;
         let activeReactiveItem: Element | null = null;
-        let activeLightItem: Element | null = null;
 
         /* ---------- boucle des anneaux ---------- */
 
@@ -310,8 +309,6 @@ export function CursorFollower() {
 
             setPosition(smallCircle, smallX, smallY);
             setPosition(largeCircle, largeX, largeY);
-            updateContrastAtRings();
-
             const smallDistance = Math.hypot(targetX - smallX, targetY - smallY);
             const largeDistance = Math.hypot(targetX - largeX, targetY - largeY);
             if (smallDistance > 0.15 || largeDistance > 0.15) {
@@ -337,7 +334,6 @@ export function CursorFollower() {
                 hasPointerPosition = true;
                 smallCircle.style.opacity = "1";
                 largeCircle.style.opacity = "1";
-                updateContrastAtRings();
             } else if (!animationFrame) {
                 animationFrame = window.requestAnimationFrame(animate);
             }
@@ -353,37 +349,6 @@ export function CursorFollower() {
             startRings();
         };
 
-        const setLightContrast = (item: Element | null) => {
-            activeLightItem = item;
-            layer.dataset.contrast = item ? "light" : "normal";
-        };
-
-        const getLightItem = (target: EventTarget | null) => {
-            if (!(target instanceof Element) || target.closest(".cursor-dark")) return null;
-            return target.closest(".cursor-light");
-        };
-
-        const updateContrastAtRings = () => {
-            const rings = [
-                { x: smallX, y: smallY, radius: SMALL_CONFIG.radius * SMALL_CONFIG.finalScale },
-                { x: largeX, y: largeY, radius: LARGE_CONFIG.radius * LARGE_CONFIG.finalScale },
-            ];
-            let lightItem: Element | null = null;
-
-            for (const ring of rings) {
-                for (let sample = 0; sample < 24; sample++) {
-                    const angle = (sample / 24) * TAU;
-                    const x = Math.round(ring.x + Math.cos(angle) * ring.radius);
-                    const y = Math.round(ring.y + Math.sin(angle) * ring.radius);
-                    lightItem = getLightItem(document.elementFromPoint(x, y));
-                    if (lightItem) break;
-                }
-                if (lightItem) break;
-            }
-
-            if (lightItem !== activeLightItem) setLightContrast(lightItem);
-        };
-
         const getReactiveItem = (target: EventTarget | null) =>
             target instanceof Element ? target.closest(".cursor-reactive") : null;
 
@@ -391,7 +356,6 @@ export function CursorFollower() {
             hasPointerPosition = false;
             smallCircle.style.opacity = "0";
             largeCircle.style.opacity = "0";
-            setLightContrast(null);
             resetReactiveAnimation();
             lastFrameTime = 0;
             if (animationFrame) {

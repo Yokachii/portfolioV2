@@ -6,10 +6,6 @@
     pointer-events: none;
 }
 
-.layer[data-contrast="light"] {
-    mix-blend-mode: difference;
-}
-
 .circle {
     position: absolute;
     top: 0;

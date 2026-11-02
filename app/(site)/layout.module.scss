@@ -32,6 +32,26 @@
 		}
 	}
 
+	.themeShell {
+		position: fixed;
+		top: 24px;
+		left: 24px;
+		z-index: 60;
+		opacity: 0;
+		pointer-events: none;
+
+		&.loaded {
+			animation: languageShellIn 1100ms cubic-bezier(0.2, 0.75, 0.25, 1) var(--nav-load-delay, 4600ms) both;
+		}
+
+		&.instant,
+		&.loaded.instant {
+			animation: none;
+			opacity: 1;
+			transform: none;
+		}
+	}
+
 	.languageShell {
 		position: fixed;
 		top: 24px;
@@ -282,6 +302,13 @@
 			transform: none;
 		}
 
+		.themeShell.loaded,
+		.themeShell.instant {
+			animation: none;
+			opacity: 1;
+			transform: none;
+		}
+
 		.page {
 			transition: opacity 200ms ease, filter 200ms ease;
 		}
@@ -313,14 +340,13 @@
 			right: 16px;
 		}
 
-		.topControls {
-			gap: 8px;
+		.themeShell {
+			top: 12px;
+			left: 16px;
 		}
 
-		.themeToggle {
-			width: 42px;
-			height: 42px;
-			flex-basis: 42px;
+		.topControls {
+			gap: 8px;
 		}
 	}
 }
