@@ -1,51 +1,22 @@
+"use client";
+
 import style from "./main.module.scss";
-
-type JourneyEntry = {
-    title: string;
-    place: string;
-    description: string;
-    period: string;
-};
-
-const entries: JourneyEntry[] = [
-    {
-        title: "ESISAR",
-        place: "School of Advanced Industrial & Embedded Systems",
-        description: "Studying Embedded Systems and Industrial Computing, with a focus on software development, electronics, and computer architecture.",
-        period: "2025 — NOW",
-    },
-    {
-        title: "Samsoe Skole",
-        place: "Denmark",
-        description: "Exchange student in Denmark, where I became fluent in Danish and absorbed the culture and the way of learning.",
-        period: "2021 — 2023",
-    },
-    {
-        title: "UI / UX Design",
-        place: "Coursework",
-        description: "Wireframing, prototyping and usability testing — learning to design before writing a single line of code.",
-        period: "2023 — 2024",
-    },
-    {
-        title: "Web Development",
-        place: "Coursework",
-        description: "The fundamentals: HTML, CSS and JavaScript, then algorithms and data structures. The reason I fell in love with building.",
-        period: "2019 — 2023",
-    },
-];
+import { useSiteTranslations } from "@/app/i18n/site-locale";
 
 export function AboutJourney() {
+    const text = useSiteTranslations().about;
+
     return (
         <section className={style.journey} data-scroll-reveal>
             <header className={style.header} data-scroll-reveal>
                 <h2>
-                    <span className="cursor-light">MY</span>
-                    <span className="cursor-light">JOURNEY</span>
+                    <span className="cursor-light">{text.journeyTitle[0]}</span>
+                    <span className="cursor-light">{text.journeyTitle[1]}</span>
                 </h2>
             </header>
 
             <div className={style.list}>
-                {entries.map((entry) => (
+                {text.journey.map((entry) => (
                     <article className={`${style.card} cursor-reactive`} key={`${entry.title}-${entry.period}`} data-scroll-reveal>
                         <div className={style.content}>
                             <div className={style.meta}>

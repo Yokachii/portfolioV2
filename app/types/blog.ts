@@ -31,11 +31,16 @@ export type MainType = {
     content:Array<ContentItem>;
 }
 
+export type PageContent = {
+    header: HeaderType;
+    main: MainType;
+};
+
 export type PageType = {
     createdAt:string;
     tags:string[];
     coverImage:string;
-    header:HeaderType;
-    main:MainType;
+    en:PageContent;
+    fr:PageContent;
     url?:string;
 }

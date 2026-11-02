@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useSiteTranslations } from "@/app/i18n/site-locale";
 import style from "./page.module.scss";
 
 type SocialLinks = {
@@ -38,13 +41,15 @@ function SocialMark({ name }: { name: keyof SocialLinks }) {
 }
 
 export function InfoCard({ data }: { data: InfoCardData }) {
+    const text = useSiteTranslations();
+
     return (
         <article className={`${style.card} cursor-light`}>
             <div className={style.imageFrame}>
                 <Image
                     className={style.portrait}
                     src={data.image ?? "/tete.jpg"}
-                    alt={`${data.name ?? "Profile"} portrait`}
+                    alt={text.profilePortrait}
                     fill
                     priority
                     sizes="(max-width: 700px) 90vw, 35vw"
@@ -55,10 +60,10 @@ export function InfoCard({ data }: { data: InfoCardData }) {
             <div className={style.details}>
                 <h1 className={style.name}>{data.name ?? "NAME"}</h1>
                 <p className={style.description}>
-                    {data.description ?? "A creative developer building thoughtful digital experiences."}
+                    {data.description ?? text.profileDescription}
                 </p>
 
-                <div className={style.socials} aria-label="Social media links">
+                <div className={style.socials} aria-label={text.socialLinks}>
                     {socialProfiles.map(({ key, label, url }) => (
                         <a
                             className={style.socialLink}

@@ -1,34 +1,28 @@
-import style from "./main.module.scss";
+"use client";
 
-const stats = [
-    { value: "8+", label: "Years of experience" },
-    { value: "15+", label: "Projects completed" },
-    { value: "3", label: "Languages spoken" },
-];
+import style from "./main.module.scss";
+import { useSiteTranslations } from "@/app/i18n/site-locale";
 
 export function AboutIntro() {
+    const text = useSiteTranslations().about;
+    const stats = text.stats.map((label, index) => ({ value: ["8+", "15+", "3"][index], label }));
+
     return (
         <section className={style.intro} data-scroll-reveal>
             <header className={style.header} data-scroll-reveal>
                 <h2>
-                    <span className="cursor-light">WHO I AM</span>
-                    <span className="cursor-light">&amp; WHAT I BUILD</span>
+                    <span className="cursor-light">{text.introTitle[0]}</span>
+                    <span className="cursor-light">{text.introTitle[1]}</span>
                 </h2>
             </header>
 
             <div className={style.body}>
                 <div className={style.text} data-scroll-reveal>
                     <p className="cursor-light">
-                        I&apos;m Elliot Deconinck, a software engineer based in France, currently
-                        studying Embedded Systems and Industrial Computing. I like the space where
-                        hardware stubbornness meets software elegance — where a few hundred bytes
-                        have to behave as well as a modern web app.
+                        {text.paragraphs[0]}
                     </p>
                     <p className="cursor-light">
-                        My work moves between two worlds: product-facing interfaces built with
-                        React, Next.js and TypeScript, and closer-to-the-metal work in C and
-                        Python. I care about the details most people never notice — easing curves,
-                        focus states, the millisecond it takes a page to feel alive.
+                        {text.paragraphs[1]}
                     </p>
                 </div>
 

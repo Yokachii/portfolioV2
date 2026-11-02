@@ -1,4 +1,8 @@
+"use client";
+
+import Image from "next/image";
 import style from "./page.module.scss";
+import { useSiteLocale, useSiteTranslations } from "@/app/i18n/site-locale";
 
 type ProjectItem = {
     title: string;
@@ -7,34 +11,20 @@ type ProjectItem = {
     href: string;
 };
 
-const projects: ProjectItem[] = [
-    {
-        title: "Framework Picture",
-        description: "Front end page to present the work of a photographer, built with Next.js, featuring a responsive design and smooth animations.",
-        image: "./projects/framework/main.png",
-        href: "http://localhost:3000/projects/framework-picture"
-    },
-    {
-            title: "Socket.IO Chess App",
-            description: "A real-time multiplayer chess application built with Socket.IO & Next.js, allowing players to compete against each other online.",
-        image: "./projects/chess/main.png",
-        href: "http://localhost:3000/projects/chess-game"
-    },
-    {
-        title: "3D Engine 2023",
-        description: "A 3D engine built in PURE native web HTML JS PHP with no lib, and only divs perspective using CSS 3D transforms. Also my first big project",
-        image: "./projects/3d-engine/cover.png",
-        href: "http://localhost:3000/3d/engine2023"
-    }
-];
-
 export function Projects() {
+    const locale = useSiteLocale();
+    const text = useSiteTranslations().projectHighlights;
+    const projects: ProjectItem[] = text.items.map((item) => ({
+        ...item,
+        href: item.href.startsWith("/projects/") ? `/${locale}${item.href}` : item.href,
+    }));
+
     return (
         <section className={style.projects} data-scroll-reveal>
             <div className={style.header} data-scroll-reveal>
                 <h2>
-                    <span className="cursor-light">RECENT</span>
-                    <span className="cursor-light">PROJECTS</span>
+                    <span className="cursor-light">{text.title[0]}</span>
+                    <span className="cursor-light">{text.title[1]}</span>
                 </h2>
             </div>
 
@@ -42,7 +32,7 @@ export function Projects() {
                 {projects.map((project) => (
                     <a key={project.title} href={project.href} className={`${style.card} cursor-reactive`} data-scroll-reveal>
                         <div className={style.imageWrap}>
-                            <img src={project.image} alt={project.title} />
+                            <Image src={project.image} alt={project.title} width={900} height={600} />
                         </div>
 
                         <div className={style.content}>

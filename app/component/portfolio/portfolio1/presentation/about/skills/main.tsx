@@ -1,4 +1,7 @@
+"use client";
+
 import style from "./main.module.scss";
+import { useSiteTranslations } from "@/app/i18n/site-locale";
 
 type Skill = {
     name: string;
@@ -23,17 +26,20 @@ const skills: Skill[] = [
 ];
 
 export function AboutSkills() {
+    const text = useSiteTranslations().about;
+    const localizedSkills = skills.map((skill, index) => ({ ...skill, detail: text.skillDescriptions[index] }));
+
     return (
         <section className={style.skills} data-scroll-reveal>
             <header className={style.header} data-scroll-reveal>
                 <h2>
-                    <span className="cursor-light">WHAT I</span>
-                    <span className="cursor-light">WORK WITH</span>
+                    <span className="cursor-light">{text.skillsTitle[0]}</span>
+                    <span className="cursor-light">{text.skillsTitle[1]}</span>
                 </h2>
             </header>
 
             <div className={style.grid}>
-                {skills.map((skill) => (
+                {localizedSkills.map((skill) => (
                     <article className={`${style.card} cursor-reactive`} key={skill.name} data-scroll-reveal>
                         <div className={`${style.mark} ${style[skill.tone]}`} aria-hidden="true">
                             <span>{skill.mark}</span>

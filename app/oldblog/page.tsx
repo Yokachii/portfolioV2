@@ -23,7 +23,7 @@ export default function BlogIndexPage() {
 
         return projects
             .filter((project) => {
-                const searchableText = `${project.header.title} ${project.header.description} ${project.tags.join(" ")}`.toLowerCase();
+                const searchableText = `${project.fr.header.title} ${project.fr.header.description} ${project.tags.join(" ")}`.toLowerCase();
                 const matchesQuery = !normalizedQuery || searchableText.includes(normalizedQuery);
                 const matchesTag = selectedTag === "all" || project.tags.includes(selectedTag);
                 return matchesQuery && matchesTag;
@@ -84,14 +84,14 @@ export default function BlogIndexPage() {
                 {filteredProjects.map((project) => (
                     <article className={style.projectCard} key={project.id}>
                         <a href={`/blog/${project.id}`} className={style.imageLink}>
-                            <img src={project.coverImage} alt={project.header.title} />
+                            <img src={project.coverImage} alt={project.fr.header.title} />
                         </a>
                         <div className={style.cardBody}>
                             <time dateTime={project.createdAt}>
                                 {new Date(project.createdAt).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" })}
                             </time>
-                            <h2><a href={`/blog/${project.id}`}>{project.header.title}</a></h2>
-                            <p>{project.header.description}</p>
+                            <h2><a href={`/blog/${project.id}`}>{project.fr.header.title}</a></h2>
+                            <p>{project.fr.header.description}</p>
                             <div className={style.cardTags}>
                                 {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
                             </div>

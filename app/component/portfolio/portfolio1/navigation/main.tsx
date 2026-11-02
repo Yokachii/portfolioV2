@@ -10,19 +10,20 @@ export type PortfolioNavItem = {
 
 type PortfolioNavProps = {
     items: PortfolioNavItem[];
+    ariaLabel?: string;
     currentPage?: string;
     isVisible?: boolean;
     className?: string;
     onNavigate?: (href: string, event: MouseEvent<HTMLAnchorElement>) => boolean;
 };
 
-export function PortfolioNav({ items, currentPage, isVisible = true, className, onNavigate }: PortfolioNavProps) {
+export function PortfolioNav({ items, currentPage, isVisible = true, className, onNavigate, ariaLabel = "Main navigation" }: PortfolioNavProps) {
     const activePage = currentPage?.trim().toLowerCase();
 
     return (
         <nav
             className={`${style.nav} ${isVisible ? style.visible : style.hidden} ${className ?? ""}`.trim()}
-            aria-label="Main navigation"
+            aria-label={ariaLabel}
         >
             <ul className={style.navList}>
                 {items.map(({ id, label, href, icon }) => {

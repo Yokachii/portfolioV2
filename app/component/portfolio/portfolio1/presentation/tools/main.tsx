@@ -1,4 +1,7 @@
+"use client";
+
 import style from "./main.module.scss";
+import { useSiteTranslations } from "@/app/i18n/site-locale";
 
 type Tool = {
     name: string;
@@ -27,17 +30,20 @@ const tools: Tool[] = [
 ];
 
 export function Tools() {
+    const text = useSiteTranslations().tools;
+    const localizedTools = tools.map((tool, index) => ({ ...tool, detail: text.descriptions[index] }));
+
     return (
         <section className={style.tools} data-scroll-reveal>
             <header className={style.header} data-scroll-reveal>
                 <h2>
-                    <span className="cursor-light">PREMIUM</span>
-                    <span className="cursor-light">TOOLS</span>
+                    <span className="cursor-light">{text.title[0]}</span>
+                    <span className="cursor-light">{text.title[1]}</span>
                 </h2>
             </header>
 
             <div className={style.grid}>
-                {tools.map((tool) => (
+                {localizedTools.map((tool) => (
                     <article className={`${style.card} cursor-reactive`} key={tool.name} data-scroll-reveal>
                         <div className={`${style.mark} ${style[tool.tone]}`} aria-hidden="true">
                             <span>{tool.mark}</span>

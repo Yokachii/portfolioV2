@@ -2,7 +2,6 @@
 
 import { BlogHeader } from "@/app/component/blog/header";
 import { BlogMain } from "@/app/component/blog/textField";
-import Image from "next/image";
 import { blogsDatas } from "@/app/data/blog";
 
 export default async function BlogPage({
@@ -21,8 +20,8 @@ export default async function BlogPage({
 
     return (
         <div className="map">
-            <BlogHeader data={data.header}/>
-            <BlogMain data={data.main}/>
+            <BlogHeader data={data.fr.header}/>
+            <BlogMain data={data.fr.main}/>
         </div>
     );
 }
