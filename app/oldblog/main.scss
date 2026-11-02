@@ -1,7 +1,7 @@
 body{
     margin : 5vh 0vw;
-    background-color: rgb(246, 237, 202);
-    color:black;
+    background-color: var(--theme-archive-input);
+    color: var(--theme-archive-text);
     .navbar{
         position: fixed;
         top:0;

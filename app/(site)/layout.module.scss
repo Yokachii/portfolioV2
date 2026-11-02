@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
 
 :root {
-	--color-white: #ffffff;
-	--color-gray-1: #9fa8af;
-	--color-subtitle: #bfc7cc;
-	--color-badge-text: #f4f7f9;
-	--color-main: rgb(212 255 88);
+	--color-white: var(--theme-text);
+	--color-gray-1: var(--theme-text-muted);
+	--color-subtitle: var(--theme-text-soft);
+	--color-badge-text: var(--theme-text-badge);
+	--color-main: var(--theme-accent);
 }
 
 .shell {
@@ -52,37 +52,86 @@
 		}
 	}
 
+	.topControls {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		pointer-events: auto;
+	}
+
+	.themeToggle {
+		display: grid;
+		width: 44px;
+		height: 44px;
+		flex: 0 0 44px;
+		place-items: center;
+		padding: 0;
+		border: 1px solid var(--theme-border-nav);
+		border-radius: 12px;
+		background: linear-gradient(180deg, var(--theme-nav-top), var(--theme-nav-bottom));
+		box-shadow:
+			0 14px 38px var(--theme-shadow-nav),
+			inset 0 1px 0 var(--theme-glass-line),
+			inset 0 -1px 0 var(--theme-glass-shadow-line);
+		color: var(--theme-text);
+		cursor: pointer;
+		backdrop-filter: blur(24px) saturate(220%) brightness(120%);
+		-webkit-backdrop-filter: blur(24px) saturate(220%) brightness(120%);
+		transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+
+		&:hover {
+			border-color: var(--theme-highlight-focus-strong);
+			color: var(--theme-accent);
+			transform: translateY(-1px);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--theme-highlight-focus-strong);
+			outline-offset: 3px;
+		}
+
+		svg {
+			width: 19px;
+			height: 19px;
+			fill: none;
+			stroke: currentColor;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			stroke-width: 1.7;
+		}
+	}
+
 	.languageControl {
 		position: relative;
 		display: inline-flex;
 		align-items: center;
 		min-width: 132px;
 		padding: 4px 12px;
-		border: 1px solid rgba(255, 255, 255, 0.18);
+		border: 1px solid var(--theme-border-nav);
 		border-radius: 12px;
-		background: linear-gradient(180deg, rgba(17, 21, 26, 0.9), rgba(9, 12, 16, 0.72));
+		background: linear-gradient(180deg, var(--theme-nav-top), var(--theme-nav-bottom));
 		box-shadow:
-			0 14px 38px rgba(0, 0, 0, 0.42),
-			inset 0 1px 0 rgba(255, 255, 255, 0.16),
-			inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+			0 14px 38px var(--theme-shadow-nav),
+			inset 0 1px 0 var(--theme-glass-line),
+			inset 0 -1px 0 var(--theme-glass-shadow-line);
 		backdrop-filter: blur(24px) saturate(220%) brightness(120%);
 		-webkit-backdrop-filter: blur(24px) saturate(220%) brightness(120%);
 		pointer-events: auto;
 
 		&:focus-within {
-			border-color: rgba(212, 255, 88, 0.9);
+			border-color: var(--theme-highlight-focus-strong);
 			box-shadow:
-				0 0 0 2px rgba(212, 255, 88, 0.18),
-				0 14px 38px rgba(0, 0, 0, 0.42),
-				inset 0 1px 0 rgba(255, 255, 255, 0.16),
-				inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+				0 0 0 2px var(--theme-highlight-focus),
+				0 14px 38px var(--theme-shadow-nav),
+				inset 0 1px 0 var(--theme-glass-line),
+				inset 0 -1px 0 var(--theme-glass-shadow-line);
 		}
 
 		&::before {
 			position: absolute;
 			inset: 1px;
 			border-radius: 11px;
-			background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+			background: linear-gradient(180deg, var(--theme-glass-highlight), var(--theme-glass-highlight-soft));
 			content: "";
 			pointer-events: none;
 		}
@@ -97,7 +146,7 @@
 			border: 0;
 			outline: 0;
 			background: transparent;
-			color: rgba(255, 255, 255, 0.95);
+			color: var(--theme-white-95);
 			font: inherit;
 			font-size: 13px;
 			cursor: pointer;
@@ -107,8 +156,8 @@
 			}
 
 			option {
-				background: #15191e;
-				color: #fff;
+				background: var(--theme-background-soft);
+				color: var(--theme-text);
 			}
 		}
 
@@ -118,7 +167,7 @@
 			width: 14px;
 			height: 14px;
 			fill: none;
-			stroke: rgba(255, 255, 255, 0.8);
+			stroke: var(--theme-white-80);
 			stroke-linecap: round;
 			stroke-linejoin: round;
 			stroke-width: 1.6;
@@ -146,9 +195,9 @@
 		left: 0;
 		z-index: -1;
 		background:
-			radial-gradient(ellipse at 18% 14%, #0b0a09, transparent 25%),
-			radial-gradient(ellipse at 82% 86%, #0b0a09, transparent 22%),
-			#0b0a09;
+			radial-gradient(ellipse at 18% 14%, var(--theme-background), transparent 25%),
+			radial-gradient(ellipse at 82% 86%, var(--theme-background), transparent 22%),
+			var(--theme-background);
 	}
 
 	/* Leave uses transitions on this wrapper. Enter animation is on a nested
@@ -263,5 +312,21 @@
 			top: 72px;
 			right: 16px;
 		}
+
+		.topControls {
+			gap: 8px;
+		}
+
+		.themeToggle {
+			width: 42px;
+			height: 42px;
+			flex-basis: 42px;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.shell .themeToggle {
+		transition: none;
 	}
 }

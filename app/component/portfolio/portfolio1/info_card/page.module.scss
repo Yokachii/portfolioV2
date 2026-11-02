@@ -1,7 +1,7 @@
 .card {
-	--card-ink: #17231f;
-	--card-muted: #68736e;
-	--card-accent: #d4ff58;
+	--card-ink: var(--theme-info-card-text);
+	--card-muted: var(--theme-info-card-muted);
+	--card-accent: var(--theme-accent);
 
 	display: flex;
 	flex-direction: column;
@@ -9,9 +9,9 @@
 	max-height: 640px;
 	overflow: hidden;
 	color: var(--card-ink);
-	background: #fff;
+	background: var(--theme-info-card-background);
 	border-radius: 16px;
-	box-shadow: 0 22px 58px rgba(4, 18, 14, 0.16);
+	box-shadow: 0 22px 58px var(--theme-info-card-shadow);
 	font-family: var(--font-geist-sans), "Avenir Next", sans-serif;
 
 	.imageFrame {
@@ -21,7 +21,7 @@
 		margin: 26px auto 0;
 		margin-top: 40px !important;
 		overflow: hidden;
-		background: #414a45;
+		background: var(--theme-info-card-image-background);
 		border-radius: 8px;
 		flex: 0 0 auto;
 
@@ -74,16 +74,16 @@
 			transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
 
 			&:hover {
-				background-color: rgba(90, 98, 94, 0.16);
+				background-color: var(--theme-info-card-hover);
 				border-radius: 8px;
-				box-shadow: inset 0 0 0 42px rgba(90, 98, 94, 0.16);
+				box-shadow: inset 0 0 0 42px var(--theme-info-card-hover);
 				transform: translateY(-2px);
 			}
 
 			&:focus-visible {
-				background-color: rgba(90, 98, 94, 0.16);
+				background-color: var(--theme-info-card-hover);
 				border-radius: 8px;
-				box-shadow: inset 0 0 0 42px rgba(90, 98, 94, 0.16);
+				box-shadow: inset 0 0 0 42px var(--theme-info-card-hover);
 				outline: 2px solid var(--card-accent);
 				outline-offset: 3px;
 				transform: translateY(-2px);

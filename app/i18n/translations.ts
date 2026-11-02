@@ -6,6 +6,10 @@ export const translations = {
     en: {
         language: "English",
         chooseLanguage: "Choose language",
+        theme: {
+            switchToLight: "Switch to light theme",
+            switchToDark: "Switch to dark theme",
+        },
         profilePortrait: "Portrait of Elliot Deconinck",
         profileDescription: "A creative developer building thoughtful digital experiences.",
         socialLinks: "Social media links",
@@ -88,6 +92,10 @@ export const translations = {
     fr: {
         language: "Français",
         chooseLanguage: "Choisir la langue",
+        theme: {
+            switchToLight: "Passer au thème clair",
+            switchToDark: "Passer au thème sombre",
+        },
         profilePortrait: "Portrait d'Elliot Deconinck",
         profileDescription: "Un développeur créatif qui imagine des expériences numériques réfléchies.",
         socialLinks: "Liens vers les réseaux sociaux",

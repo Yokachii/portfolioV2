@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
 
 :root {
-	--color-white: #ffffff;
-	--color-gray-1: #9fa8af;
-	--color-subtitle: #bfc7cc;
-	--color-badge-text: #f4f7f9;
-	--color-main: rgb(212 255 88);
-	--color-bg: #15191e;
-	--color-border: rgba(255, 255, 255, 0.12);
-	--color-surface: rgba(255, 255, 255, 0.04);
+	--color-white: var(--theme-text);
+	--color-gray-1: var(--theme-text-muted);
+	--color-subtitle: var(--theme-text-soft);
+	--color-badge-text: var(--theme-text-badge);
+	--color-main: var(--theme-accent);
+	--color-bg: var(--theme-background-soft);
+	--color-border: var(--theme-border);
+	--color-surface: var(--theme-surface);
 }
 
 /* ---------- En-tête de projet ---------- */
@@ -164,7 +164,7 @@
 	a {
 		color: var(--color-main);
 		text-decoration: none;
-		border-bottom: 1px solid rgba(212, 255, 88, 0.35);
+		border-bottom: 1px solid var(--theme-highlight-border-link);
 		transition: border-color 200ms ease, color 200ms ease;
 
 		&:hover {

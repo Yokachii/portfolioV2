@@ -2,7 +2,7 @@
     max-width: 1180px;
     margin: 0 auto;
     padding: 7rem 2rem 5rem;
-    color: #17231f;
+    color: var(--theme-archive-text);
 }
 
 .intro {
@@ -12,7 +12,7 @@
 
 .eyebrow {
     margin: 0 0 1rem;
-    color: #d85b38;
+    color: var(--theme-archive-accent);
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -30,7 +30,7 @@
 .lede {
     max-width: 550px;
     margin: 1.5rem 0 0;
-    color: #5e6b65;
+    color: var(--theme-archive-muted);
     font-size: 1.15rem;
     line-height: 1.6;
 }
@@ -40,14 +40,14 @@
     align-items: end;
     gap: 1rem;
     padding: 1rem 0;
-    border-top: 1px solid #bfc9c1;
-    border-bottom: 1px solid #bfc9c1;
+    border-top: 1px solid var(--theme-archive-border);
+    border-bottom: 1px solid var(--theme-archive-border);
 }
 
 .toolbar label {
     display: grid;
     gap: 0.4rem;
-    color: #5e6b65;
+    color: var(--theme-archive-muted);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -60,11 +60,11 @@
 .toolbar input,
 .toolbar select {
     min-height: 2.8rem;
-    border: 1px solid #9eaca3;
+    border: 1px solid var(--theme-archive-border-strong);
     border-radius: 0;
-    background: #f6edca;
+    background: var(--theme-archive-input);
     padding: 0.65rem 0.8rem;
-    color: #17231f;
+    color: var(--theme-archive-text);
     font: inherit;
     font-size: 0.95rem;
     font-weight: 400;
@@ -79,11 +79,11 @@
 }
 
 .tags button {
-    border: 1px solid #9eaca3;
+    border: 1px solid var(--theme-archive-border-strong);
     border-radius: 999px;
     background: transparent;
     padding: 0.5rem 0.85rem;
-    color: #405149;
+    color: var(--theme-archive-tag-text);
     cursor: pointer;
     font: inherit;
     font-size: 0.85rem;
@@ -91,14 +91,14 @@
 
 .tags button:hover,
 .tags .activeTag {
-    border-color: #17231f;
-    background: #17231f;
-    color: #f6edca;
+    border-color: var(--theme-archive-text);
+    background: var(--theme-archive-text);
+    color: var(--theme-archive-active-text);
 }
 
 .resultCount {
     margin: 0 0 0.8rem;
-    color: #5e6b65;
+    color: var(--theme-archive-text-soft);
     font-size: 0.85rem;
 }
 
@@ -110,15 +110,15 @@
 
 .projectCard {
     overflow: hidden;
-    border: 1px solid #bfc9c1;
-    background: #f8f2d9;
+    border: 1px solid var(--theme-archive-border);
+    background: var(--theme-archive-card);
 }
 
 .imageLink {
     display: block;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: #d8dfd6;
+    background: var(--theme-archive-image);
 }
 
 .imageLink img {
@@ -133,7 +133,7 @@
 }
 
 .cardBody time {
-    color: #d85b38;
+    color: var(--theme-archive-accent);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -157,7 +157,7 @@
 
 .cardBody p {
     margin: 0;
-    color: #5e6b65;
+    color: var(--theme-archive-muted);
     line-height: 1.55;
 }
 
@@ -170,14 +170,14 @@
 
 .cardTags span {
     padding: 0.3rem 0.55rem;
-    background: #dce5d8;
-    color: #405149;
+    background: var(--theme-archive-tag);
+    color: var(--theme-archive-tag-text);
     font-size: 0.75rem;
 }
 
 .emptyState {
     padding: 2rem 0;
-    color: #5e6b65;
+    color: var(--theme-archive-muted);
 }
 
 @media (max-width: 700px) {

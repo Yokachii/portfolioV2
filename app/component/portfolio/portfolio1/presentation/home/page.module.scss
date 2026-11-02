@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
 
 :root {
-	--color-white: #ffffff;
-	--color-gray-1: #9fa8af;
-	--color-subtitle: #bfc7cc;
-	--color-badge-text: #f4f7f9;
-	--color-main: rgb(212 255 88);
+	--color-white: var(--theme-text);
+	--color-gray-1: var(--theme-text-muted);
+	--color-subtitle: var(--theme-text-soft);
+	--color-badge-text: var(--theme-text-badge);
+	--color-main: var(--theme-accent);
 }
 
 .main {

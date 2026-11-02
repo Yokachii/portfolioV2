@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { CursorFollower } from "@/app/component/portfolio/portfolio1/cursor_follower/main";
@@ -8,6 +8,47 @@ import { PortfolioNav, type PortfolioNavItem } from "@/app/component/portfolio/p
 import { NavParamSync, PageTransitionProvider, usePageTransition } from "@/app/(site)/transition-context";
 import { useSiteLocale, useSiteTranslations } from "@/app/i18n/site-locale";
 import style from "@/app/(site)/layout.module.scss";
+
+type Theme = "dark" | "light";
+
+const THEME_STORAGE_KEY = "site-theme";
+const THEME_CHANGE_EVENT = "site-theme-change";
+
+function getThemeSnapshot(): Theme {
+    try {
+        return window.localStorage.getItem(THEME_STORAGE_KEY) === "light" ? "light" : "dark";
+    } catch (error) {
+        console.error("Unable to read the saved site theme.", error);
+        return "dark";
+    }
+}
+
+function getServerThemeSnapshot(): Theme {
+    return "dark";
+}
+
+function subscribeToTheme(onChange: () => void) {
+    const handleStorage = (event: StorageEvent) => {
+        if (event.key === THEME_STORAGE_KEY || event.key === null) onChange();
+    };
+
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(THEME_CHANGE_EVENT, onChange);
+    return () => {
+        window.removeEventListener("storage", handleStorage);
+        window.removeEventListener(THEME_CHANGE_EVENT, onChange);
+    };
+}
+
+function saveTheme(theme: Theme) {
+    document.documentElement.dataset.theme = theme;
+    try {
+        window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (error) {
+        console.error("Unable to save the site theme preference.", error);
+    }
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
+}
 
 function resolveActiveNavId(pathname: string): string | null {
     const normalized = pathname.replace(/^\/(en|fr)(?=\/|$)/, "").replace(/\/+$/, "") || "/";
@@ -33,6 +74,7 @@ function ShellChrome({ children }: { children: React.ReactNode }) {
     const { isLeaving, hasLoadedFromNav, phase, navigate } = usePageTransition();
     const [isLoaded, setIsLoaded] = useState(false);
     const [isNavVisible, setIsNavVisible] = useState(true);
+    const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getServerThemeSnapshot);
     const lastScrollY = useRef(0);
 
     useEffect(() => {
@@ -60,6 +102,11 @@ function ShellChrome({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         document.documentElement.lang = locale;
     }, [locale]);
+
+    useEffect(() => {
+        document.documentElement.dataset.theme = theme;
+        window.dispatchEvent(new Event("site-theme-change"));
+    }, [theme]);
 
     const activeNavId = resolveActiveNavId(pathname);
     const chromeReady = isLoaded || hasLoadedFromNav;
@@ -105,22 +152,44 @@ function ShellChrome({ children }: { children: React.ReactNode }) {
                 />
             </div>
             <div className={`${style.languageShell} ${chromeReady ? style.loaded : ""} ${hasLoadedFromNav ? style.instant : ""}`}>
-                <label className={`${style.languageControl} cursor-light`}>
-                    <span className={style.visuallyHidden}>{text.chooseLanguage}</span>
-                    <select
-                        aria-label={text.chooseLanguage}
-                        value={locale}
-                        onChange={(event) => {
-                            const nextLocale = event.target.value;
-                            const route = pathname.replace(/^\/(en|fr)(?=\/|$)/, "") || "";
-                            router.push(`/${nextLocale}${route}`);
+                <div className={style.topControls}>
+                    <button
+                        type="button"
+                        className={`${style.themeToggle} cursor-light`}
+                        aria-label={theme === "dark" ? text.theme.switchToLight : text.theme.switchToDark}
+                        aria-pressed={theme === "light"}
+                        onClick={() => {
+                            saveTheme(theme === "dark" ? "light" : "dark");
                         }}
                     >
-                        <option value="en">English</option>
-                        <option value="fr">Français</option>
-                    </select>
-                    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
-                </label>
+                        {theme === "dark" ? (
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="4" />
+                                <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+                            </svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z" />
+                            </svg>
+                        )}
+                    </button>
+                    <label className={`${style.languageControl} cursor-light`}>
+                        <span className={style.visuallyHidden}>{text.chooseLanguage}</span>
+                        <select
+                            aria-label={text.chooseLanguage}
+                            value={locale}
+                            onChange={(event) => {
+                                const nextLocale = event.target.value;
+                                const route = pathname.replace(/^\/(en|fr)(?=\/|$)/, "") || "";
+                                router.push(`/${nextLocale}${route}`);
+                            }}
+                        >
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                        </select>
+                        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+                    </label>
+                </div>
             </div>
             <div className={style.background}></div>
             <Suspense fallback={null}><NavParamSync /></Suspense>

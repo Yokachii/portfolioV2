@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 .intro {
-	--white: #ffffff;
-	--muted: #9fa8af;
-	--soft: #c5ccd0;
-	--main: rgb(212 255 88);
+	--white: var(--theme-text);
+	--muted: var(--theme-text-muted);
+	--soft: var(--theme-text-soft);
+	--main: var(--theme-accent);
 
 	display: flex;
 	flex-direction: column;

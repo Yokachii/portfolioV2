@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
 
 .experience {
-	--white: #ffffff;
-	--muted: #9fa8af;
-	--soft: #c5ccd0;
-	--card-hover: rgba(255, 255, 255, 0.06);
-	--card-main: rgb(212 255 88);
+	--white: var(--theme-text);
+	--muted: var(--theme-text-muted);
+	--soft: var(--theme-text-soft);
+	--card-hover: var(--theme-surface-card-hover);
+	--card-main: var(--theme-accent);
 
 	display: flex;
 	flex-direction: column;

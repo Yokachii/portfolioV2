@@ -100,7 +100,6 @@ function createRing(canvas: HTMLCanvasElement, c: RingConfig) {
     canvas.style.marginTop = `${-HALF}px`;
     ctx.scale(dpr, dpr);
 
-    const color = getComputedStyle(canvas).getPropertyValue("--color-main").trim() || "rgb(212 255 88)";
     const count = Math.max(8, Math.round((TAU * c.radius) / 5));
     const seeds = Array.from({ length: count }, () => ({
         dr: -0.3 + Math.random() * 1.2,
@@ -165,7 +164,7 @@ function createRing(canvas: HTMLCanvasElement, c: RingConfig) {
     const draw = (now: number) => {
         ctx.clearRect(0, 0, SIZE, SIZE);
         if (current.alpha < 0.01) return;
-        ctx.strokeStyle = color;
+        ctx.strokeStyle = getComputedStyle(canvas).getPropertyValue("--theme-cursor").trim() || "rgb(212 255 88)";
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         pass(ctx, current, now, 0, current.alpha);
@@ -195,6 +194,9 @@ function createRing(canvas: HTMLCanvasElement, c: RingConfig) {
             from = { ...current };
             t0 = now;
             mode = "return";
+        },
+        redraw(now: number) {
+            draw(now);
         },
         /** Retourne true tant que l'animation continue. */
         tick(now: number) {
@@ -249,6 +251,12 @@ export function CursorFollower() {
         const smallRing = createRing(smallCanvas, { ...SMALL_CONFIG, instant: reduceMotion });
         const largeRing = createRing(largeCanvas, { ...LARGE_CONFIG, instant: reduceMotion });
         if (!smallRing || !largeRing) return;
+        const handleThemeChange = () => {
+            const now = performance.now();
+            smallRing.redraw(now);
+            largeRing.redraw(now);
+        };
+        window.addEventListener("site-theme-change", handleThemeChange);
 
         let hasPointerPosition = false;
         let targetX = 0;
@@ -422,6 +430,7 @@ export function CursorFollower() {
             document.removeEventListener("pointerover", handlePointerOver);
             document.removeEventListener("pointerout", handlePointerOut);
             document.documentElement.removeEventListener("pointerleave", handlePointerLeave);
+            window.removeEventListener("site-theme-change", handleThemeChange);
             if (animationFrame) window.cancelAnimationFrame(animationFrame);
             if (ringFrame) window.cancelAnimationFrame(ringFrame);
         };

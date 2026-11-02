@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
 
 :root {
-	--color-white: #ffffff;
-	--color-gray-1: #9fa8af;
-	--color-subtitle: #bfc7cc;
-	--color-badge-text: #f4f7f9;
-	--color-main: rgb(212 255 88);
-	--color-bg: #15191e;
-	--color-border: rgba(255, 255, 255, 0.12);
-	--color-surface: rgba(255, 255, 255, 0.04);
+	--color-white: var(--theme-text);
+	--color-gray-1: var(--theme-text-muted);
+	--color-subtitle: var(--theme-text-soft);
+	--color-badge-text: var(--theme-text-badge);
+	--color-main: var(--theme-accent);
+	--color-bg: var(--theme-background-soft);
+	--color-border: var(--theme-border);
+	--color-surface: var(--theme-surface);
 }
 
 .about {
@@ -105,7 +105,7 @@
 		}
 
 		&:hover {
-			border-color: rgba(255, 255, 255, 0.3);
+			border-color: var(--theme-border-strong);
 		}
 
 		&:focus-visible {
@@ -193,7 +193,7 @@
 
 	&:hover,
 	&:focus-within {
-		border-color: rgba(212, 255, 88, 0.5);
+		border-color: var(--theme-highlight-border-strong);
 	}
 
 	&:hover .imageLink img {
@@ -205,7 +205,7 @@
 	display: block;
 	aspect-ratio: 16 / 9;
 	overflow: hidden;
-	background: #1d232a;
+	background: var(--theme-background-raised);
 
 	img {
 		display: block;
