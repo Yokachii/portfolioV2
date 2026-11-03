@@ -8,6 +8,9 @@ export type ContentItem = {
     text:string;
     style?:Array<"big"|"small"|"bold"|"thin">
 } | {
+    type: "math";
+    expression: string;
+} | {
     type : "img";
     url:string;
     alt:string;

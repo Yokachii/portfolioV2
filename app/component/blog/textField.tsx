@@ -1,6 +1,7 @@
 'use client'
 
 import React from "react";
+import { InlineMath } from "react-katex";
 import { ContentItem, MainType } from "@/app/types/blog";
 import style from "./main.module.scss";
 
@@ -50,6 +51,12 @@ export function BlogMain({data}:{data:MainType}){
                 return (
                     <p className={`cursor-light ${style.blogtext} ${getTextStyle(item)}`}>
                         {renderText(item.text)}
+                    </p>
+                )
+            case "math":
+                return (
+                    <p className={`cursor-light ${style.blogtext} ${style.mathLine}`}>
+                        <InlineMath math={item.expression} renderError={() => <code>{item.expression}</code>} />
                     </p>
                 )
             case "img":

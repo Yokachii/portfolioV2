@@ -110,6 +110,15 @@
 }
 }
 
+.mathLine {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.mathLine > span {
+	display: inline-block;
+}
+
 .text_big{
 	font-size: clamp(20px, 2vw, 26px) !important;
 }

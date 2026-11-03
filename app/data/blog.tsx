@@ -10,14 +10,19 @@ type ContentTranslation = {
 };
 
 function translateMain(main: MainType, translations: Record<number, ContentTranslation>): MainType {
+    let sourceIndex = 0;
+
     return {
-        content: main.content.map((item, index) => {
-            const translation = translations[index];
+        content: main.content.map((item) => {
+            const translationIndex = item.type === "math" ? sourceIndex : sourceIndex++;
+            const translation = translations[translationIndex];
             if (!translation) return item;
 
             switch (item.type) {
                 case "str":
                     return { ...item, text: translation.text ?? item.text };
+                case "math":
+                    return item;
                 case "img":
                     return { ...item, alt: translation.alt ?? item.alt };
                 case "list":
@@ -541,9 +546,13 @@ export const blogsDatas: Record<string, PageType> = {
                 {type:"str",style:["big","bold"],text:"What is a perceptron ?"},
                 {type:"str",text:"It is basically a single artificial neuronne, it can solve basic linear problems, it take a certain number of inputs and output a float"},
                 {type:"str",style:["big","bold"],text:"How do it work ?"},
-                {type:"str",text:"The idea between a Perceptron is really simple, way simpler than we might think.\nBasically the idea is that the Perceptron will output the sum of each input multiplied by a weight + a bias\nTo start with, we will only look at sigmoid output perceptrons, meaning the ouput is passed through a sigmoid func\nz = X1*W1 + X2*W2 + ... + Xi*Wi + b\ny = sigmoid(z)\nwhere Xi are the inputs, Wi the weights and b the Bias\nThen if it is >0.5 you say it is true, <0.5 false, and you compare it with the label of your data"},
+                {type:"str",text:"The idea between a Perceptron is really simple, way simpler than we might think.\nBasically the idea is that the Perceptron will output the sum of each input multiplied by a weight + a bias\nTo start with, we will only look at sigmoid output perceptrons, meaning the ouput is passed through a sigmoid func\nwhere Xi are the inputs, Wi the weights and b the Bias\nThen if it is >0.5 you say it is true, <0.5 false, and you compare it with the label of your data"},
+                {type:"math",expression:String.raw`z = \sum_{i=1}^{n} X_i W_i + b`},
+                {type:"math",expression:String.raw`y = \operatorname{sigmoid}(z)`},
                 {type:"str",style:["big","bold"],text:"How do you actually train a Perceptron ?"},
-                {type:"str",text:"It is pretty straigth-forward, if you wanna train your perceptron on a certain dataset, you start by spliting it in two, a train part that you train it on and a second part to test the abbility of the model to predict new data, then you test all the data in your training set on your perceptron, and you ajust the weights and bias of the Perceptron depending on the delta between the output of the perceptron and the output you wanted\nThe formula used to edit bias and weights is :\nfor each weight i :  w_i <- w_i + lr * (label - y) * x_i\nbiais :                b   <- b   + lr * (label - y)\nAnd repeat for as much cycle as you want/need\nYou also want to shuffle your dataset at each cycle otherwise your perceptron might prioritize certain data because of the order"},
+                {type:"str",text:"It is pretty straigth-forward, if you wanna train your perceptron on a certain dataset, you start by spliting it in two, a train part that you train it on and a second part to test the abbility of the model to predict new data, then you test all the data in your training set on your perceptron, and you ajust the weights and bias of the Perceptron depending on the delta between the output of the perceptron and the output you wanted\nThe formulas below update the weights and bias. Repeat these updates for as many cycles as needed.\nYou also want to shuffle your dataset at each cycle otherwise your perceptron might prioritize certain data because of the order"},
+                {type:"math",expression:String.raw`w_i \leftarrow w_i + \mathrm{lr} \cdot (\mathrm{label} - y) \cdot x_i`},
+                {type:"math",expression:String.raw`b \leftarrow b + \mathrm{lr} \cdot (\mathrm{label} - y)`},
                 {type:"str",style:["bold"],text:"How do you test your perceptron on a dataset ?"},
                 {type:"str",text:"The easiest way to test it is by simply running it through your test dataset, if the output of the perceptron predicted the label well, you count it, then you just make a probability and you get an accuracy which is the % of data that the perceptron predicted correctly"},
                 {type:"str",text:"The flaws with this way of calculating accuracy :"},
@@ -566,7 +575,8 @@ export const blogsDatas: Record<string, PageType> = {
 
                 {type:"str",style:["bold"],text:"The limitation of single neuron :"},
                 {type:"str",text:"The issue with a single neuron being that it use the ponderated sum of the data in, so it will never be able to solve non linear problems. For exemple, running my single perceptron on a pretty simple non linear problem (easy spiral), it start a 49.5% accuracy, and after 100k cycle, it reach 54% so it likely didnt learned anything, we clearly see the limitation of the single perceptron"},
-                {type:"str",text:"non-linear problems being for exemple : \nCircle : because the equation of a circle is x^2 + y^2 = 1, a system using equations similar to a perceptron will not be able to solve it\nSpiral : For similar reason, the equation of the spiral is even more complicated as a circle, it will be impossible for a Perceptron to solve it."},
+                {type:"str",text:"non-linear problems being for exemple : \nCircle : a perceptron-like system cannot solve a circle. Its equation is shown below.\nSpiral : For similar reason, the equation of the spiral is even more complicated as a circle, it will be impossible for a Perceptron to solve it."},
+                {type:"math",expression:String.raw`x^2 + y^2 = 1`},
                 {type:"str",text:"The idea behind a network :"},
                 {type:"img",alt:'Neural network representation',url:"/projects/perceptron/network/neural_network.png"},
                 {type:"str",text:"You position the neurons in layers, input layer (usually as much neurons as inputs in your data), hidden layers with an arbitraty numbers of neurons, and output with one neuron.\nEach neurons take as inputs the outputs of All the neurons of the last layer."},
@@ -604,9 +614,9 @@ export const blogsDatas: Record<string, PageType> = {
             3: { text: "Qu'est-ce qu'un perceptron ?" },
             4: { text: "Un perceptron est un neurone artificiel unique. Il peut résoudre des problèmes linéaires simples : il reçoit plusieurs entrées et produit un nombre décimal." },
             5: { text: "Comment fonctionne-t-il ?" },
-            6: { text: "L'idée derrière un perceptron est très simple.\nIl calcule la somme de chaque entrée multipliée par son poids, à laquelle il ajoute un biais.\nDans un premier temps, je me concentre sur les perceptrons dont la sortie passe par une fonction sigmoïde :\nz = X1*W1 + X2*W2 + ... + Xi*Wi + b\ny = sigmoid(z)\nXi représente les entrées, Wi les poids et b le biais.\nSi la sortie est supérieure à 0,5, on la considère comme vraie ; si elle est inférieure à 0,5, elle est fausse. On la compare ensuite à l'étiquette de la donnée." },
+            6: { text: "L'idée derrière un perceptron est très simple.\nIl calcule la somme de chaque entrée multipliée par son poids, à laquelle il ajoute un biais.\nDans un premier temps, je me concentre sur les perceptrons dont la sortie passe par une fonction sigmoïde :\nXi représente les entrées, Wi les poids et b le biais.\nSi la sortie est supérieure à 0,5, on la considère comme vraie ; si elle est inférieure à 0,5, elle est fausse. On la compare ensuite à l'étiquette de la donnée." },
             7: { text: "Comment entraîner un perceptron ?" },
-            8: { text: "La méthode est assez directe. Pour entraîner le perceptron sur un jeu de données, on sépare celui-ci en deux parties : une base d'entraînement et une base de test qui servira à évaluer sa capacité à prédire de nouvelles données. On fait passer les données d'entraînement dans le perceptron, puis on ajuste ses poids et son biais en fonction de l'écart entre la sortie obtenue et celle attendue.\nLes formules de mise à jour des poids et du biais sont :\npour chaque poids i :  w_i <- w_i + lr * (label - y) * x_i\nbiais :                b   <- b   + lr * (label - y)\nOn répète ces opérations autant de cycles que nécessaire.\nIl faut aussi mélanger les données à chaque cycle, sinon le perceptron risque de privilégier certaines d'entre elles en raison de leur ordre." },
+            8: { text: "La méthode est assez directe. Pour entraîner le perceptron sur un jeu de données, on sépare celui-ci en deux parties : une base d'entraînement et une base de test qui servira à évaluer sa capacité à prédire de nouvelles données. On fait passer les données d'entraînement dans le perceptron, puis on ajuste ses poids et son biais en fonction de l'écart entre la sortie obtenue et celle attendue.\nLes formules ci-dessous mettent à jour les poids et le biais. Répétez ces mises à jour autant de cycles que nécessaire.\nIl faut aussi mélanger les données à chaque cycle, sinon le perceptron risque de privilégier certaines d'entre elles en raison de leur ordre." },
             9: { text: "Comment tester un perceptron sur un jeu de données ?" },
             10: { text: "La méthode la plus simple consiste à lui présenter les données de test. On compte le nombre de prédictions correctes, puis on le rapporte au nombre total de données pour obtenir la précision du modèle." },
             11: { text: "Les limites de cette façon de calculer la précision :" },
@@ -621,7 +631,7 @@ export const blogsDatas: Record<string, PageType> = {
             20: { text: "Maintenant que le perceptron fonctionne seul, qu'il peut résoudre des problèmes simples et que son fonctionnement est mieux compris, je vais relier plusieurs neurones pour résoudre des problèmes plus complexes." },
             21: { text: "La limite d'un neurone seul :" },
             22: { text: "Un neurone seul utilise une somme pondérée de ses données d'entrée et ne peut donc pas résoudre de problèmes non linéaires. Par exemple, mon perceptron simple commence à 49,5 % de précision sur un problème de spirale assez facile. Après 100 000 cycles, il atteint seulement 54 % : il n'a probablement rien appris. La limite du perceptron seul est claire." },
-            23: { text: "Voici quelques exemples de problèmes non linéaires :\nCercle : l'équation d'un cercle est x^2 + y^2 = 1. Un système reposant sur des équations de type perceptron ne peut pas le résoudre.\nSpirale : pour la même raison, l'équation d'une spirale est encore plus complexe et un perceptron seul ne peut pas la résoudre." },
+            23: { text: "Voici quelques exemples de problèmes non linéaires :\nCercle : un système de type perceptron ne peut pas résoudre un cercle. Son équation est présentée ci-dessous.\nSpirale : pour la même raison, l'équation d'une spirale est encore plus complexe et un perceptron seul ne peut pas la résoudre." },
             24: { text: "Le principe d'un réseau :" },
             25: { alt: "Schéma d'un réseau de neurones" },
             26: { text: "Les neurones sont organisés en couches : une couche d'entrée (généralement autant de neurones que de variables dans les données), une ou plusieurs couches cachées comprenant un nombre arbitraire de neurones, puis une couche de sortie avec un neurone.\nChaque neurone reçoit en entrée les sorties de tous les neurones de la couche précédente." },

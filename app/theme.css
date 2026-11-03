@@ -4,6 +4,7 @@
   --theme-background: #0b0a09;
   --theme-background-soft: #15191e;
   --theme-background-raised: #1d232a;
+  --theme-light-text:#9fa8af;
   --theme-text: #ffffff;
   --theme-text-muted: #9fa8af;
   --theme-text-soft: #bfc7cc;
@@ -88,6 +89,7 @@
   --theme-cursor: #611c1c;
   --theme-cursor-contrast: #160606;
   --theme-cursor-outline: #f4e3d2;
+  --theme-light-text:#f4e3d2;
   --theme-border: rgba(97, 28, 28, 0.2);
   --theme-border-subtle: rgba(97, 28, 28, 0.13);
   --theme-border-strong: rgba(97, 28, 28, 0.38);
