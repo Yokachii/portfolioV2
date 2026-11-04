@@ -581,16 +581,17 @@ export const blogsDatas: Record<string, PageType> = {
                 {type:"img",alt:'Neural network representation',url:"/projects/perceptron/network/neural_network.png"},
                 {type:"str",text:"You position the neurons in layers, input layer (usually as much neurons as inputs in your data), hidden layers with an arbitraty numbers of neurons, and output with one neuron.\nEach neurons take as inputs the outputs of All the neurons of the last layer."},
 
-                // Formules d'un resau à couche
-                {type:"math",expression:String.raw`W^{[l]} \in \mathbb{R}^{M \times N}`},
-                {type:"math",expression:String.raw`b^{[l]} \in \mathbb{R}^{M}`},
-                {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
                 // Propagation avant
                 {type:"math",expression:String.raw`Z_j^{[l]} = \sum_{i=0}^{N-1} \left( W_{ji}^{[l]} \cdot a_i^{[l-1]} \right) + b_j^{[l]}`},
                 {type:"math",expression:String.raw`a_j^{[l]} = \sigma(Z_j^{[l]}) = \frac{1}{1 + e^{-Z_j^{[l]}}}`},
-                // {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
-                // {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
-                // {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
+                {type:"math",expression:String.raw`\delta_j^{[l]} = \frac{\partial E}{\partial Z_j^{[l]}}`},
+                {type:"math",expression:String.raw`\delta_j^{[L-1]} = y_{pred} - y_{true}`},
+                {type:"math",expression:String.raw`\delta_j^{[l]} = \left( \sum_{k=0}^{K-1} \delta_k^{[l+1]} \cdot W_{kj}^{[l+1]} \right) \cdot \sigma'(Z_j^{[l]})`},
+                {type:"math",expression:String.raw`\delta_j^{[l]} = \left( \sum_{k=0}^{K-1} \delta_k^{[l+1]} \cdot W_{kj}^{[l+1]} \right) \cdot a_j^{[l]}(1 - a_j^{[l]})`},
+                {type:"math",expression:String.raw`\frac{\partial E}{\partial W_{ji}^{[l]}} = \delta_j^{[l]} \cdot a_i^{[l-1]}`},
+                {type:"math",expression:String.raw`\frac{\partial E}{\partial b_j^{[l]}} = \delta_j^{[l]}`},
+                {type:"math",expression:String.raw`W_{ji}^{[l]} \leftarrow W_{ji}^{[l]} - \eta \cdot \left( \delta_j^{[l]} \cdot a_i^{[l-1]} \right)`},
+                {type:"math",expression:String.raw`b_j^{[l]} \leftarrow b_j^{[l]} - \eta \cdot \delta_j^{[l]}`},
                 
 
                 {type:"str",text:"Those are the charts i was eable to draw using the network i created on a complicated spiral problem"},
