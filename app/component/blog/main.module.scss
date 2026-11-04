@@ -111,12 +111,31 @@
 }
 
 .mathLine {
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 1.4rem 0;
+	padding: 0.55rem 0.35rem 0.65rem;
 	overflow-x: auto;
-	white-space: nowrap;
+	overflow-y: hidden;
+	color: var(--color-subtitle);
+	font-size: clamp(14px, 1.35vw, 18px);
+	scrollbar-width: thin;
 }
 
-.mathLine > span {
-	display: inline-block;
+.mathLine :global(.katex-display) {
+	margin: 0;
+	text-align: center;
+}
+
+.mathLine :global(.katex-display > .katex) {
+	width: max-content;
+	margin-inline: auto;
+	max-width: none;
+	text-align: left;
+}
+
+.mathLine :global(.katex-display > .katex > .katex-html) {
+	width: max-content;
 }
 
 .text_big{
@@ -236,5 +255,13 @@
 @media (max-width: 700px) {
 	.blogBlock {
 		margin-top: 2.2rem;
+	}
+
+	.mathLine {
+		font-size: clamp(11px, 3.2vw, 14px);
+	}
+
+	.mathLine :global(.katex-display) {
+		text-align: left;
 	}
 }
