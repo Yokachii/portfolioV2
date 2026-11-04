@@ -581,6 +581,18 @@ export const blogsDatas: Record<string, PageType> = {
                 {type:"img",alt:'Neural network representation',url:"/projects/perceptron/network/neural_network.png"},
                 {type:"str",text:"You position the neurons in layers, input layer (usually as much neurons as inputs in your data), hidden layers with an arbitraty numbers of neurons, and output with one neuron.\nEach neurons take as inputs the outputs of All the neurons of the last layer."},
 
+                // Formules d'un resau à couche
+                {type:"math",expression:String.raw`W^{[l]} \in \mathbb{R}^{M \times N}`},
+                {type:"math",expression:String.raw`b^{[l]} \in \mathbb{R}^{M}`},
+                {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
+                // Propagation avant
+                {type:"math",expression:String.raw`Z_j^{[l]} = \sum_{i=0}^{N-1} \left( W_{ji}^{[l]} \cdot a_i^{[l-1]} \right) + b_j^{[l]}`},
+                {type:"math",expression:String.raw`a_j^{[l]} = \sigma(Z_j^{[l]}) = \frac{1}{1 + e^{-Z_j^{[l]}}}`},
+                // {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
+                // {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
+                // {type:"math",expression:String.raw`\eta \in \mathbb{R}^+`},
+                
+
                 {type:"str",text:"Those are the charts i was eable to draw using the network i created on a complicated spiral problem"},
                 {type:'img',url:'/projects/perceptron/network/courbes_acc_moyenne.png',alt:'Courbe'},
                 {type:'img',url:'/projects/perceptron/network/courbes_acc_par_run.png',alt:'Courbe2'},
