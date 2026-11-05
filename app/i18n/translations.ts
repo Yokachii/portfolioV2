@@ -28,8 +28,8 @@ export const translations = {
         projectHighlights: {
             title: ["RECENT", "PROJECTS"],
             items: [
+                { title: "MLP / LMM", description: "A machine learning project focusing on multi-layer perceptrons and the basics of a text generation model.", image: "/projects/perceptron/network/courbes_acc_moyenne.png", href: "/projects/perceptron" },
                 { title: "Framework Picture", description: "A photography portfolio built with Next.js, featuring a responsive design and smooth animations.", image: "/projects/framework/main.png", href: "/projects/framework-picture" },
-                { title: "Socket.IO Chess App", description: "A real-time multiplayer chess application built with Socket.IO and Next.js.", image: "/projects/chess/main.png", href: "/projects/chess-game" },
                 { title: "3D Engine 2023", description: "A 3D engine built with native HTML, JavaScript, PHP and CSS 3D transforms. One of my first major projects.", image: "/projects/3d-engine/cover.png", href: "/3d/engine2023" },
             ],
         },
@@ -114,8 +114,8 @@ export const translations = {
         projectHighlights: {
             title: ["PROJETS", "RÉCENTS"],
             items: [
+                { title: "MLP / LMM", description: "Un projet axé sur les réseaux de neurones à couches multiples et les bases d'un modèle de génération de texte.", image: "/projects/perceptron/network/courbes_acc_moyenne.png", href: "/projects/perceptron" },
                 { title: "Framework Picture", description: "Un portfolio de photographe réalisé avec Next.js, au design adaptatif et aux animations fluides.", image: "/projects/framework/main.png", href: "/projects/framework-picture" },
-                { title: "Jeu d'échecs Socket.IO", description: "Un jeu d'échecs multijoueur en temps réel développé avec Socket.IO et Next.js.", image: "/projects/chess/main.png", href: "/projects/chess-game" },
                 { title: "Moteur 3D 2023", description: "Un moteur 3D conçu avec HTML, JavaScript, PHP et les transformations 3D CSS natives. L'un de mes premiers grands projets.", image: "/projects/3d-engine/cover.png", href: "/3d/engine2023" },
             ],
         },
